@@ -1,6 +1,7 @@
 # RayBNN_Graph
 
-Graph Manipulation Library For GPUs, CPUs, and FPGAs via CUDA, OpenCL, and oneAPI
+Neural Networks with Sparse Weights in Rust using GPUs, CPUs, and FPGAs via CUDA, OpenCL, and oneAPI
+
 
 # Install Arrayfire
 
@@ -22,6 +23,7 @@ half = { version = "2.3.1" , features = ["num-traits"] }
 RayBNN_Sparse = "0.1.5"
 RayBNN_DataLoader = "0.1.3"
 RayBNN_Graph = "0.1.0"
+RayBNN_Neural = "0.1.0"
 ```
 
 # List of Examples
