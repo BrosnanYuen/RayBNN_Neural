@@ -1,9 +1,9 @@
 [package]
 name = "RayBNN_Neural"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Brosnan Yuen <brosnanyuen@gmail.com>"]
 edition = "2021"
-description = "Graph Manipulation Library For GPUs, CPUs, and FPGAs via CUDA, OpenCL, and oneAPI"
+description = "Neural Networks with Sparse Weights in Rust using GPUs, CPUs, and FPGAs via CUDA, OpenCL, and oneAPI"
 readme = "README.md"
 repository = "https://github.com/BrosnanYuen/RayBNN_Neural"
 keywords = ["deep-learning", "machine-learning", "neural-networks","CUDA","OpenCL"]
