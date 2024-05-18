@@ -37,7 +37,9 @@ const ONEHALF_F64: f64 = 0.5f64;
 
 
 pub fn UAF_initial_as_identity(
-    netdata: &network_metadata_type,
+    modeldata_string:  HashMap<String, String>,
+    modeldata_float:  HashMap<String, f64>,
+    modeldata_int:  HashMap<String, u64>,
 
 
     A: &mut arrayfire::Array<f64>,
@@ -47,7 +49,7 @@ pub fn UAF_initial_as_identity(
     E: &mut arrayfire::Array<f64>
 )
 {
-    let neuron_size: u64 = netdata.neuron_size.clone();
+    let neuron_size: u64 = netdata["neuron_size"].clone();
     let input_size: u64 = netdata.input_size.clone();
     let output_size: u64 = netdata.output_size.clone();
     let proc_num: u64 = netdata.proc_num.clone();
