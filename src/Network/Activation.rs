@@ -34,7 +34,7 @@ pub fn Softplus<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(X
 
 
 
-pub fn UAF<Z: arrayfire::RealFloating  >(
+pub fn UAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 	X: &arrayfire::Array<Z>,
 	A: &arrayfire::Array<Z>,
 	B: &arrayfire::Array<Z>,
@@ -45,6 +45,7 @@ pub fn UAF<Z: arrayfire::RealFloating  >(
 
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
+    let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
 
 
 
@@ -54,7 +55,7 @@ pub fn UAF<Z: arrayfire::RealFloating  >(
 	let mut temp1 = arrayfire::pow(X,&TWO,false);
 
 	// -|C|
-	let mut temp2 = -arrayfire::abs(C);
+	let mut temp2 = ZERO-arrayfire::abs(C);
 
 	//A(X + B)  +  -|C|( X^2 )
 	temp0 = arrayfire::mul(A,&temp0,true) + arrayfire::mul(&temp2,&temp1,true);
