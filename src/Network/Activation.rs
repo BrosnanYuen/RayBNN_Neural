@@ -5,6 +5,7 @@ use arrayfire;
 
 
 const ZERO_F64: f64 = 0.0;
+const ONE_F64: f64 = 1.0;
 const HIGH_F64: f64 = 1000000.0;
 const TWO_F64: f64 = 2.0;
 const ONEHALF_F64: f64 = 0.5f64;
@@ -180,7 +181,7 @@ pub fn deriUAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 	//dD = - (X - B) Sigmoid( D ( X - B )  )
 	*dD = ZERO-arrayfire::mul(&temp0,&expcal1,false);
 	//dE = 1
-	*dE = arrayfire::constant::<f64>(1.0, X.dims());
+	*dE = arrayfire::constant::<f64>(ONE_F64, X.dims()).cast::<Z>();
 
 	expcal1 = arrayfire::mul(D,&expcal1,true);
 
