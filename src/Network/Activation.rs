@@ -132,7 +132,7 @@ pub fn deriUAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 	let mut temp1 = arrayfire::pow(X,&TWO,false);
 
 	// -|C|
-	let mut temp2 = ZERO-arrayfire::abs(C);
+	let mut temp2 = ZERO.clone()-arrayfire::abs(C);
 
 
 	//A(X + B)   -  |C|( X^2 )
@@ -159,7 +159,7 @@ pub fn deriUAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 
 
 	// -|C|
-	temp2 = ZERO-arrayfire::abs(C);
+	temp2 = ZERO.clone()-arrayfire::abs(C);
 
 
 	//A - 2|C|x
