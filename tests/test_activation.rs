@@ -16,7 +16,7 @@ use rayon::prelude::*;
 
 
 #[test]
-fn test_neural() {
+fn test_activation() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
