@@ -26,7 +26,7 @@ const TWO_F64: f64 = 2.0;
 const ONEHALF_F64: f64 = 0.5f64;
 
 
-
+const EPS1_F64: f64 = 0.0001;
 
 
 
@@ -71,6 +71,7 @@ pub fn UAF_initial_as_identity(
 
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let ONE = arrayfire::constant::<f64>(ONE_F64,single_dims).cast::<Z>();
+    let EPS1 = arrayfire::constant::<f64>(EPS1_F64,single_dims).cast::<Z>();
 
 
 
