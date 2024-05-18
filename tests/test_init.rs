@@ -25,7 +25,10 @@ fn test_init() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
-    let A_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+
+    let neuron_size = 53;
+
+    let A_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
 	
 	let mut H = arrayfire::constant::<f64>(0.0,A_dims);
 	let mut A = arrayfire::constant::<f64>(0.0,A_dims);
@@ -36,6 +39,9 @@ fn test_init() {
 
     let mut modeldata_float:  HashMap<String, f64> = HashMap::new();
     let mut modeldata_int:  HashMap<String, u64> = HashMap::new();
+
+    modeldata_float.insert("neuron_std".to_string(), 0.1);
+    modeldata_int.insert("neuron_size".to_string(), neuron_size);
 
 
 	RayBNN_Neural::Network::Initialization::UAF_initial_as_identity(
