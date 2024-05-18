@@ -69,11 +69,13 @@ pub fn UAF_initial_as_identity<Z: arrayfire::RealFloating>(
     let repel_const: f64 = modeldata_float["repel_const"].clone();
     */
     let neuron_size: u64 = modeldata_int["neuron_size"].clone();
+    let neuron_std: f64 = modeldata_float["neuron_std"].clone();
 
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let ONE = arrayfire::constant::<f64>(ONE_F64,single_dims).cast::<Z>();
     let EPS1 = arrayfire::constant::<f64>(EPS1_F64,single_dims).cast::<Z>();
     let EPS2 = arrayfire::constant::<f64>(EPS2_F64,single_dims).cast::<Z>();
+    let NEURONSTD = arrayfire::constant::<f64>(neuron_std,single_dims).cast::<Z>();
 
 
 
