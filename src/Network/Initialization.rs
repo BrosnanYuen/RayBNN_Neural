@@ -38,7 +38,8 @@ const ONEHALF_F64: f64 = 0.5f64;
 
 pub fn UAF_initial_as_identity(
     netdata: &network_metadata_type,
-    //H: &mut arrayfire::Array<f64>,
+
+
     A: &mut arrayfire::Array<f64>,
     B: &mut arrayfire::Array<f64>,
     C: &mut arrayfire::Array<f64>,
@@ -73,7 +74,7 @@ pub fn UAF_initial_as_identity(
 
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
-    //  *H = 0.001*neuron_std*arrayfire::randn::<f64>(H_dims);
+    
     *A = one + 0.0001*neuron_std*arrayfire::randn::<f64>(H_dims);
     *B = 0.0001*neuron_std*arrayfire::randn::<f64>(H_dims);
     *C = 0.00001*neuron_std*arrayfire::randn::<f64>(H_dims);
@@ -92,7 +93,9 @@ pub fn UAF_initial_as_identity(
 
 pub fn UAF_initial_as_tanh(
     netdata: &network_metadata_type,
-    //H: &mut arrayfire::Array<f64>,
+
+
+
     A: &mut arrayfire::Array<f64>,
     B: &mut arrayfire::Array<f64>,
     C: &mut arrayfire::Array<f64>,
@@ -127,7 +130,7 @@ pub fn UAF_initial_as_tanh(
 
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
-    //   *H = 0.0000001*neuron_std*arrayfire::randn::<f64>(H_dims);
+    
     *A = 2.12616013f64 + 0.0001*neuron_std*arrayfire::randn::<f64>(H_dims);
     *B = (1.0f64/2.12616013f64) + 0.0001*neuron_std*arrayfire::randn::<f64>(H_dims);
     *C = 0.0000001*neuron_std*arrayfire::randn::<f64>(H_dims);
