@@ -34,13 +34,13 @@ pub fn Softplus<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(X
 
 
 
-pub fn UAF(
-	X: &arrayfire::Array<f64>,
-	A: &arrayfire::Array<f64>,
-	B: &arrayfire::Array<f64>,
-	C: &arrayfire::Array<f64>,
-	D: &arrayfire::Array<f64>,
-	E: &arrayfire::Array<f64>) ->  arrayfire::Array<f64> {
+pub fn UAF<Z: arrayfire::RealFloating  >(
+	X: &arrayfire::Array<Z>,
+	A: &arrayfire::Array<Z>,
+	B: &arrayfire::Array<Z>,
+	C: &arrayfire::Array<Z>,
+	D: &arrayfire::Array<Z>,
+	E: &arrayfire::Array<Z>) ->  arrayfire::Array<Z> {
 
 
 	// X + B
