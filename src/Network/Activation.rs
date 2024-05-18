@@ -13,7 +13,7 @@ const ONEHALF_F64: f64 = 0.5f64;
 
 
 
-pub fn ReLU<Z: arrayfire::RealFloating>(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
+pub fn ReLU<Z: arrayfire::FloatingPoint>(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
 {
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
@@ -24,7 +24,7 @@ pub fn ReLU<Z: arrayfire::RealFloating>(X: &arrayfire::Array<Z>) -> arrayfire::A
 }
 
 
-pub fn Softplus<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
+pub fn Softplus<Z: arrayfire::FloatingPoint<UnaryOutType = Z,AbsOutType = Z>  >(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
 {
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
@@ -38,7 +38,7 @@ pub fn Softplus<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(X
 
 
 
-pub fn UAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
+pub fn UAF<Z: arrayfire::FloatingPoint<UnaryOutType = Z,AbsOutType = Z>  >(
 	X: &arrayfire::Array<Z>,
 	A: &arrayfire::Array<Z>,
 	B: &arrayfire::Array<Z>,
@@ -102,7 +102,7 @@ pub fn UAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 
 
 
-pub fn deriUAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
+pub fn deriUAF<Z: arrayfire::FloatingPoint<UnaryOutType = Z,AbsOutType = Z>  >(
 	X: &arrayfire::Array<Z>,
 	A: &arrayfire::Array<Z>,
 	B: &arrayfire::Array<Z>,
