@@ -147,7 +147,7 @@ pub fn deriUAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 	*dB = arrayfire::mul(A,&expcal0,true);
 
 	// -sign(C)
-	temp2 = TWO*(arrayfire::sign(C) -  ONEHALF);
+	temp2 = TWO.clone()*(arrayfire::sign(C) -  ONEHALF);
 
 	// -sign(C) (X^2)
 	temp1 = arrayfire::mul(&temp2, &temp1, true);
