@@ -7,6 +7,9 @@ use arrayfire;
 const ZERO_F64: f64 = 0.0;
 const HIGH_F64: f64 = 1000000.0;
 const TWO_F64: f64 = 2.0;
+const ONEHALF_F64: f64 = 0.5f64;
+
+
 
 
 pub fn ReLU<Z: arrayfire::RealFloating>(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
@@ -116,6 +119,7 @@ pub fn deriUAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
     let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
+    let ONEHALF = arrayfire::constant::<f64>(ONEHALF_F64,single_dims).cast::<Z>();
 
 
 
@@ -158,7 +162,7 @@ pub fn deriUAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 
 
 	//A - 2|C|x
-	temp0 = TWO_F64*arrayfire::mul(&temp2,X,true);
+	temp0 = TWO*arrayfire::mul(&temp2,X,true);
 	temp0 = arrayfire::add(A, &temp0, true);
 	// (A - 2|C|x) Sigmoid( A(X + B)  -  |C|( X^2 ) )
 	expcal0 = arrayfire::mul(&temp0,&expcal0,false);
