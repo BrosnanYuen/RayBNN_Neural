@@ -36,8 +36,7 @@ const EPS2_F64: f64 = 0.00001;
 
 
 
-pub fn UAF_initial_as_identity(
-    modeldata_string:  HashMap<String, String>,
+pub fn UAF_initial_as_identity<Z: arrayfire::RealFloating>(
     modeldata_float:  HashMap<String, f64>,
     modeldata_int:  HashMap<String, u64>,
 
