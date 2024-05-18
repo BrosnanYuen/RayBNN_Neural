@@ -11,7 +11,12 @@ const TWO_F64: f64 = 2.0;
 
 pub fn ReLU<Z: arrayfire::FloatingPoint>(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
 {
-	arrayfire::clamp(X, &ZERO_F64, &HIGH_F64, false)
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
+    let HIGH = arrayfire::constant::<f64>(HIGH_F64,single_dims).cast::<Z>();
+
+
+	arrayfire::clamp(X, &ZERO, &HIGH, false)
 }
 
 
