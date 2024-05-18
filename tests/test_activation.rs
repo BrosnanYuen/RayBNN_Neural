@@ -104,4 +104,138 @@ fn test_neural() {
 
 
 
+
+	let mut dX = arrayfire::constant::<f64>(0.0, A.dims());
+	let mut dA = arrayfire::constant::<f64>(0.0, A.dims());
+	let mut dB = arrayfire::constant::<f64>(0.0, A.dims());
+	let mut dC = arrayfire::constant::<f64>(0.0, A.dims());
+	let mut dD = arrayfire::constant::<f64>(0.0, A.dims());
+	let mut dE = arrayfire::constant::<f64>(0.0, A.dims());
+
+	clusterdiffeq::neural::activation_f64::deriUAF(&inx,
+		&A,
+		&B,
+		&C,
+		&D,
+		&E,
+		&mut dX,
+		&mut dA,
+		&mut dB,
+		&mut dC,
+		&mut dD,
+		&mut dE);
+
+
+
+        let mut dX_act_cpu:Vec<f64> = vec![   -0.123406955300266 ,  0.320353422125326 ,  0.466063194985745 , -0.481715567525623 , -2.044655810183525 ,  0.028104792205827 ,  0.154207512685807    ];
+
+        let mut dX_out_cpu = vec!(f64::default();dX.elements());
+
+        dX.host(&mut dX_out_cpu);
+
+        dX_act_cpu = dX_act_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        dX_out_cpu = dX_out_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        assert_eq!(dX_out_cpu, dX_act_cpu);
+
+
+
+
+
+
+
+
+
+
+
+
+        let mut dA_act_cpu:Vec<f64> = vec![   0.369549809407306 ,  0.880593185595934  , 1.979063193134022 ,  0.460411899165353, -13.079421227583913 , -0.429394306561859 ,   1.189184803019221 ];
+
+        let mut dA_out_cpu = vec!(f64::default();dA.elements());
+
+        dA.host(&mut dA_out_cpu);
+
+        dA_act_cpu = dA_act_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        dA_out_cpu = dA_out_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        assert_eq!(dA_out_cpu, dA_act_cpu);
+
+
+
+
+
+
+
+
+
+
+        let mut dB_act_cpu:Vec<f64> = vec![ -0.057705065997712 , -0.090830090110622 , -0.080273580093522 , -0.040058571295469 ,  0.177357311082932 ,  0.001939312658922, -0.233167127800427  ];
+
+        let mut dB_out_cpu = vec!(f64::default();dB.elements());
+
+        dB.host(&mut dB_out_cpu);
+
+        dB_act_cpu = dB_act_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        dB_out_cpu = dB_out_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        assert_eq!(dB_out_cpu, dB_act_cpu);
+
+
+
+
+
+
+
+
+
+        let mut dC_act_cpu:Vec<f64> = vec![  -0.038121875085249 , -0.062496882277832  , 0.020554726788054 , -0.110041830838628  , 0.217011944096842 , -0.010109445684933  ,   -0.021584245797868   ];
+
+        let mut dC_out_cpu = vec!(f64::default();dB.elements());
+
+        dC.host(&mut dC_out_cpu);
+
+        dC_act_cpu = dC_act_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        dC_out_cpu = dC_out_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        assert_eq!(dC_out_cpu, dC_act_cpu);
+
+
+
+
+
+
+        let mut dD_act_cpu:Vec<f64> = vec![ 2.564116730779280 , 11.325751499026124 ,  2.812543689109861  , 0.725100724887516, -16.199482990886480 , -0.145511101613359  ,  7.485826928251551 ];
+
+        let mut dD_out_cpu = vec!(f64::default();dB.elements());
+
+        dD.host(&mut dD_out_cpu);
+
+        dD_act_cpu = dD_act_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        dD_out_cpu = dD_out_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        assert_eq!(dD_out_cpu, dD_act_cpu);
+
+
+
+
+
+
+
+        let mut dE_act_cpu:Vec<f64> = vec![1.0 ,  1.0,  1.0 ,  1.0  ,  1.0 ,  1.0,  1.0];
+
+        let mut dE_out_cpu = vec!(f64::default();dE.elements());
+
+        dE.host(&mut dE_out_cpu);
+
+        dE_out_cpu = dE_out_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        dE_act_cpu = dE_act_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+        assert_eq!(dE_act_cpu, dE_out_cpu);
+
 }
