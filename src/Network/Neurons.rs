@@ -11,12 +11,12 @@ use crate::Network::Activation::UAF;
 use crate::Network::Activation::deriUAF;
 
 
-use crate::graph::large_sparse_i32::COO_batch_find;
+use RayBNN_Sparse::Util::Search::COO_batch_find;
 
-use crate::graph::tree_i32::find_unique;
+use RayBNN_Sparse::Util::Search::find_unique;
 
 
-const COO_find_limit: u64 = 1500000000;
+const COO_FIND_LIMIT: u64 = 1500000000;
 
 
 
