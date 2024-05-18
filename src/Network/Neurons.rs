@@ -28,8 +28,15 @@ const ONEHALF_F64: f64 = 0.5f64;
 
 
 
-
-
+pub fn print_dims<Z: arrayfire::HasAfEnum>(
+    arr:  &arrayfire::Array<Z>,
+)
+{
+    for i in 0..4
+    {
+        println!("dims{}:{}",i,arr.dims()[i]);
+    }
+}
 
 
 pub fn print_netdata(
