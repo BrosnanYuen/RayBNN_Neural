@@ -69,6 +69,8 @@ pub fn UAF_initial_as_identity(
     let repel_const: f64 = modeldata_float["repel_const"].clone();
 
 
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let ONE = arrayfire::constant::<f64>(ONE_F64,single_dims).cast::<Z>();
 
 
 
