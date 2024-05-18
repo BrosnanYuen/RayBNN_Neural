@@ -60,4 +60,48 @@ fn test_neural() {
 
 
 
+
+
+
+
+
+
+
+
+	let vA:Vec<f64> = vec![-0.2982  , -0.0831  ,  0.0214  , -0.0983  , -0.1469  ,  0.1847  , -0.2015 ];
+	let A = arrayfire::Array::new(&vA, arrayfire::Dim4::new(&[1, vA.len() as u64, 1, 1]));
+
+	let vB:Vec<f64> = vec![5.2428 ,  13.0324  ,  4.1387  ,  2.2668 , -15.8075 , -17.9467  ,  8.9090];
+	let B = arrayfire::Array::new(&vB, arrayfire::Dim4::new(&[1, vA.len() as u64, 1, 1]));
+
+	let vC:Vec<f64> = vec![ 1.4957  ,  1.7917  , -1.7917  ,  1.9376 ,  -1.8764  ,   0.7045  ,  0.2624];
+	let C = arrayfire::Array::new(&vC, arrayfire::Dim4::new(&[1, vA.len() as u64, 1, 1]));
+
+	let vD:Vec<f64> = vec![ -0.0685  , -0.1045  , -0.1405  , -0.0495  ,  0.3050  , -0.2759 ,  -0.2355];
+	let D = arrayfire::Array::new(&vD, arrayfire::Dim4::new(&[1, vA.len() as u64, 1, 1]));
+
+	let vE:Vec<f64> = vec![ -0.4353  ,  1.1616  , -1.3310  , -1.2005  , -1.6402 ,  -1.4096   , 1.2616];
+	let E = arrayfire::Array::new(&vE, arrayfire::Dim4::new(&[1, vA.len() as u64, 1, 1]));
+
+    let UAF_out = RayBNN_Neural::Network::Activation::UAF(&inx,&A,&B,&C,&D,&E);
+
+
+    let mut UAF_act_cpu:Vec<f64> = vec![  -1.229361239592553 , -0.430689013312100 , -1.676232710717406 , -1.769939655881784 , -4.693361583872426 , -1.394708635225978  , -0.729895666552097      ];
+
+    let mut UAF_out_cpu = vec!(f64::default();UAF_out.elements());
+
+    UAF_out.host(&mut UAF_out_cpu);
+
+    UAF_out_cpu = UAF_out_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+    UAF_act_cpu = UAF_act_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+
+    assert_eq!(UAF_act_cpu, UAF_out_cpu);
+
+
+
+
+
+
 }
