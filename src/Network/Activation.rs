@@ -20,14 +20,14 @@ pub fn ReLU<Z: arrayfire::RealFloating>(X: &arrayfire::Array<Z>) -> arrayfire::A
 }
 
 
-pub fn Softplus<Z: arrayfire::RealFloating<UnaryOutType = Z>  >(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
+pub fn Softplus<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
 {
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
 
-	let mut temp = ZERO-arrayfire::abs(X).cast::<Z>();
+	let mut temp = ZERO-arrayfire::abs(X);
 	temp = arrayfire::exp(&temp);
-	ReLU(X)  +  arrayfire::log1p(&temp).cast::<Z>()
+	ReLU(X)  +  arrayfire::log1p(&temp)
 }
 
 
