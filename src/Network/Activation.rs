@@ -9,7 +9,7 @@ const HIGH_F64: f64 = 1000000.0;
 const TWO_F64: f64 = 2.0;
 
 
-pub fn ReLU(X: &arrayfire::Array<f64>) -> arrayfire::Array<f64>
+pub fn ReLU<Z: arrayfire::FloatingPoint>(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
 {
 	arrayfire::clamp(X, &ZERO_F64, &HIGH_F64, false)
 }
