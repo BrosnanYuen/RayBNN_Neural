@@ -98,19 +98,19 @@ pub fn UAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 
 
 
-pub fn deriUAF(
-	X: &arrayfire::Array<f64>,
-	A: &arrayfire::Array<f64>,
-	B: &arrayfire::Array<f64>,
-	C: &arrayfire::Array<f64>,
-	D: &arrayfire::Array<f64>,
-	E: &arrayfire::Array<f64>,
-	dX: &mut arrayfire::Array<f64>,
-	dA: &mut arrayfire::Array<f64>,
-	dB: &mut arrayfire::Array<f64>,
-	dC: &mut arrayfire::Array<f64>,
-	dD: &mut arrayfire::Array<f64>,
-	dE: &mut arrayfire::Array<f64>)
+pub fn deriUAF<Z: arrayfire::RealFloating>(
+	X: &arrayfire::Array<Z>,
+	A: &arrayfire::Array<Z>,
+	B: &arrayfire::Array<Z>,
+	C: &arrayfire::Array<Z>,
+	D: &arrayfire::Array<Z>,
+	E: &arrayfire::Array<Z>,
+	dX: &mut arrayfire::Array<Z>,
+	dA: &mut arrayfire::Array<Z>,
+	dB: &mut arrayfire::Array<Z>,
+	dC: &mut arrayfire::Array<Z>,
+	dD: &mut arrayfire::Array<Z>,
+	dE: &mut arrayfire::Array<Z>)
 {
 
 	// X + B 
