@@ -76,10 +76,10 @@ pub fn UAF_initial_as_identity(
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
     
-    *A = one + 0.0001*neuron_std*arrayfire::randn::<f64>(H_dims);
+    *A = ONE + 0.0001*neuron_std*arrayfire::randn::<f64>(H_dims);
     *B = 0.0001*neuron_std*arrayfire::randn::<f64>(H_dims);
     *C = 0.00001*neuron_std*arrayfire::randn::<f64>(H_dims);
-    *D = -one + 0.00001*neuron_std*arrayfire::randn::<f64>(H_dims);
+    *D = -ONE + 0.00001*neuron_std*arrayfire::randn::<f64>(H_dims);
     *E = 0.00001*neuron_std*arrayfire::randn::<f64>(H_dims);
 
 
