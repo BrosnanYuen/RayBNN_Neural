@@ -64,7 +64,7 @@ fn test_init() {
     assert_eq!(D.dims()[0], neuron_size);
     assert_eq!(E.dims()[0], neuron_size);
 
-    for i in 1..3
+    for i in 1..4
     {
         assert_eq!(A.dims()[i], 1);
         assert_eq!(B.dims()[i], 1);
@@ -73,6 +73,8 @@ fn test_init() {
         assert_eq!(E.dims()[i], 1);
     }
 
+
+    
 
 
 }
