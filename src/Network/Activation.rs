@@ -98,7 +98,7 @@ pub fn UAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 
 
 
-pub fn deriUAF<Z: arrayfire::RealFloating>(
+pub fn deriUAF<Z: arrayfire::RealFloating<UnaryOutType = Z,AbsOutType = Z>  >(
 	X: &arrayfire::Array<Z>,
 	A: &arrayfire::Array<Z>,
 	B: &arrayfire::Array<Z>,
@@ -113,10 +113,18 @@ pub fn deriUAF<Z: arrayfire::RealFloating>(
 	dE: &mut arrayfire::Array<Z>)
 {
 
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
+    let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
+
+
+
+
+
 	// X + B 
 	let mut temp0 = arrayfire::add(X, B, true);
 	// X^2
-	let mut temp1 = arrayfire::pow(X,&TWO_F64,false);
+	let mut temp1 = arrayfire::pow(X,&TWO,false);
 
 	// -|C|
 	let mut temp2 = -arrayfire::abs(C);
