@@ -36,7 +36,7 @@ const EPS2_F64: f64 = 0.00001;
 
 
 
-pub fn UAF_initial_as_identity<Z: arrayfire::RealFloating>(
+pub fn UAF_initial_as_identity<Z: arrayfire::FloatingPoint>(
     modeldata_float:  HashMap<String, f64>,
     modeldata_int:  HashMap<String, u64>,
 
@@ -82,11 +82,11 @@ pub fn UAF_initial_as_identity<Z: arrayfire::RealFloating>(
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
     
-    *A = ONE + EPS1*NEURONSTD*arrayfire::randn::<f64>(H_dims);
-    *B = EPS1*NEURONSTD*arrayfire::randn::<f64>(H_dims);
-    *C = EPS2*NEURONSTD*arrayfire::randn::<f64>(H_dims);
-    *D = EPS2*NEURONSTD*arrayfire::randn::<f64>(H_dims) -ONE;
-    *E = EPS2*NEURONSTD*arrayfire::randn::<f64>(H_dims);
+    *A = ONE + EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
+    *B = EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
+    *C = EPS2*NEURONSTD*arrayfire::randn::<Z>(H_dims);
+    *D = EPS2*NEURONSTD*arrayfire::randn::<Z>(H_dims) -ONE;
+    *E = EPS2*NEURONSTD*arrayfire::randn::<Z>(H_dims);
 
 
 }
