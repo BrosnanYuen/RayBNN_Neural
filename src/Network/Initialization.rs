@@ -48,6 +48,7 @@ pub fn UAF_initial_as_identity<Z: arrayfire::RealFloating>(
     E: &mut arrayfire::Array<Z>
 )
 {
+    /* 
     let neuron_size: u64 = modeldata_int["neuron_size"].clone();
     let input_size: u64 = modeldata_int["input_size"].clone();
     let output_size: u64 = modeldata_int["output_size"].clone();
@@ -66,7 +67,8 @@ pub fn UAF_initial_as_identity<Z: arrayfire::RealFloating>(
     let center_const: f64 = modeldata_float["center_const"].clone();
     let spring_const: f64 = modeldata_float["spring_const"].clone();
     let repel_const: f64 = modeldata_float["repel_const"].clone();
-
+    */
+    let neuron_size: u64 = modeldata_int["neuron_size"].clone();
 
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let ONE = arrayfire::constant::<f64>(ONE_F64,single_dims).cast::<Z>();
