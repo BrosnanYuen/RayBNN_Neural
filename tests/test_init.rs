@@ -56,6 +56,8 @@ fn test_init() {
         &mut E
     );
 
+    //RayBNN_Neural::Network::Neurons::print_dims(&A);
+
     assert_eq!(A.dims()[0], neuron_size);
     assert_eq!(B.dims()[0], neuron_size);
     assert_eq!(C.dims()[0], neuron_size);
@@ -64,11 +66,11 @@ fn test_init() {
 
     for i in 1..3
     {
-        assert_eq!(A.dims()[i], 0);
-        assert_eq!(B.dims()[i], 0);
-        assert_eq!(C.dims()[i], 0);
-        assert_eq!(D.dims()[i], 0);
-        assert_eq!(E.dims()[i], 0);
+        assert_eq!(A.dims()[i], 1);
+        assert_eq!(B.dims()[i], 1);
+        assert_eq!(C.dims()[i], 1);
+        assert_eq!(D.dims()[i], 1);
+        assert_eq!(E.dims()[i], 1);
     }
 
 
