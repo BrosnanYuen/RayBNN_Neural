@@ -55,7 +55,7 @@ fn test_activation2() {
 	let vE:Vec<f64> = vec![ -0.4353  ,  1.1616  , -1.3310  , -1.2005  , -1.6402 ,  -1.4096   , 1.2616];
 	let E = arrayfire::Array::new(&vE, arrayfire::Dim4::new(&[vA.len() as u64, 1, 1, 1]));
 
-    let UAF_out = clusterdiffeq::neural::activation_f64::UAF(&inx,&A,&B,&C,&D,&E);
+    let UAF_out = RayBNN_Neural::Network::Activation::UAF(&inx,&A,&B,&C,&D,&E);
 
 
     let mut UAF_act_cpu:Vec<f64> = vec![  -1.22936123959255283,-0.43068901331209997,-1.67623271071740554,-1.76993965588178370,-4.69336158387242630,-1.39470863522597788,-0.72989566655209714,
@@ -95,7 +95,7 @@ fn test_activation2() {
 	let mut dD = arrayfire::constant::<f64>(0.0, A.dims());
 	let mut dE = arrayfire::constant::<f64>(0.0, A.dims());
 
-	clusterdiffeq::neural::activation_f64::deriUAF(&inx,
+	RayBNN_Neural::Network::Activation::deriUAF(&inx,
 		&A,
 		&B,
 		&C,
