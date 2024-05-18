@@ -9,7 +9,7 @@ const HIGH_F64: f64 = 1000000.0;
 const TWO_F64: f64 = 2.0;
 
 
-pub fn ReLU<Z: arrayfire::FloatingPoint>(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
+pub fn ReLU<Z: arrayfire::RealFloating>(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
 {
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
@@ -20,7 +20,7 @@ pub fn ReLU<Z: arrayfire::FloatingPoint>(X: &arrayfire::Array<Z>) -> arrayfire::
 }
 
 
-pub fn Softplus(X: &arrayfire::Array<f64>) -> arrayfire::Array<f64>
+pub fn Softplus<Z: arrayfire::RealFloating>(X: &arrayfire::Array<f64>) -> arrayfire::Array<f64>
 {
 	let mut temp = -arrayfire::abs(X);
 	temp = arrayfire::exp(&temp);
