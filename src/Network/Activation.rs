@@ -27,7 +27,7 @@ pub fn Softplus<Z: arrayfire::RealFloating<UnaryOutType = Z>  >(X: &arrayfire::A
 
 	let mut temp = ZERO-arrayfire::abs(X).cast::<Z>();
 	temp = arrayfire::exp(&temp);
-	ReLU(X)  +  arrayfire::log1p(&temp).cast()
+	ReLU(X)  +  arrayfire::log1p(&temp).cast::<Z>()
 }
 
 
