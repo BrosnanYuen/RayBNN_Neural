@@ -16,7 +16,7 @@ use rayon::prelude::*;
 
 
 #[test]
-fn test_activation() {
+fn test_init() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
