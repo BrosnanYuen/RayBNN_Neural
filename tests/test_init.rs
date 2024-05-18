@@ -73,8 +73,25 @@ fn test_init() {
         assert_eq!(E.dims()[i], 1);
     }
 
+    let mut inx_cpu:Vec<f64> = vec![   0.7888 ,  -0.9269  , -0.2022  ,  0.8652  ,  0.5039  , -0.6619  ,  0.4113 ];
+    let inx = arrayfire::Array::new(&inx_cpu, arrayfire::Dim4::new(&[1, inx_cpu.len() as u64, 1, 1]));
 
     
+    let UAF_out = RayBNN_Neural::Network::Activation::UAF(&inx,&A,&B,&C,&D,&E);
+
+
+    let mut UAF_out_cpu = vec!(f64::default();UAF_out.elements());
+
+    UAF_out.host(&mut UAF_out_cpu);
+
+    UAF_out_cpu = UAF_out_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+    inx_cpu = inx_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+
+
+    assert_eq!(inx_cpu, UAF_out_cpu);
+
+
 
 
 }
