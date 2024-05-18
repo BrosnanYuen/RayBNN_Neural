@@ -41,11 +41,11 @@ pub fn UAF_initial_as_identity<Z: arrayfire::RealFloating>(
     modeldata_int:  HashMap<String, u64>,
 
 
-    A: &mut arrayfire::Array<f64>,
-    B: &mut arrayfire::Array<f64>,
-    C: &mut arrayfire::Array<f64>,
-    D: &mut arrayfire::Array<f64>,
-    E: &mut arrayfire::Array<f64>
+    A: &mut arrayfire::Array<Z>,
+    B: &mut arrayfire::Array<Z>,
+    C: &mut arrayfire::Array<Z>,
+    D: &mut arrayfire::Array<Z>,
+    E: &mut arrayfire::Array<Z>
 )
 {
     let neuron_size: u64 = modeldata_int["neuron_size"].clone();
