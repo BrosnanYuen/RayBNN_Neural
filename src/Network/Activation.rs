@@ -4,14 +4,14 @@ use arrayfire;
 
 
 
-const zero: f64 = 0.0;
-const high: f64 = 1000000.0;
-const two: f64 = 2.0;
+const ZERO_F64: f64 = 0.0;
+const HIGH_F64: f64 = 1000000.0;
+const TWO_F64: f64 = 2.0;
 
 
 pub fn ReLU(X: &arrayfire::Array<f64>) -> arrayfire::Array<f64>
 {
-	arrayfire::clamp(X, &zero, &high, false)
+	arrayfire::clamp(X, &ZERO_F64, &HIGH_F64, false)
 }
 
 
@@ -36,7 +36,7 @@ pub fn UAF(
 	// X + B
 	let mut temp0 = arrayfire::add(X, B, true);
 	// X^2
-	let mut temp1 = arrayfire::pow(X,&two,false);
+	let mut temp1 = arrayfire::pow(X,&TWO_F64,false);
 
 	//A(X + B)  +  C( X^2 )
 	temp0 = arrayfire::mul(A,&temp0,true) + arrayfire::mul(C,&temp1,true);
@@ -78,7 +78,7 @@ pub fn UAF(
 	// X + B
 	let mut temp0 = arrayfire::add(X, B, true);
 	// X^2
-	let mut temp1 = arrayfire::pow(X,&two,false);
+	let mut temp1 = arrayfire::pow(X,&TWO_F64,false);
 
 	// -|C|
 	let mut temp2 = -arrayfire::abs(C);
@@ -137,7 +137,7 @@ pub fn deriUAF(
 	// X + B 
 	let mut temp0 = arrayfire::add(X, B, true);
 	// X^2
-	let mut temp1 = arrayfire::pow(X,&two,false);
+	let mut temp1 = arrayfire::pow(X,&TWO_F64,false);
 	//A(X + B)  +  C( X^2 )
 	let mut expcal0 = arrayfire::mul(A,&temp0,true) + arrayfire::mul(C,&temp1,true);
 
@@ -155,7 +155,7 @@ pub fn deriUAF(
 
 
 	//A + 2Cx
-	temp0 = two*arrayfire::mul(C,X,true);
+	temp0 = TWO_F64*arrayfire::mul(C,X,true);
 	temp0 = arrayfire::add(A, &temp0, true);
 	// (A + 2Cx) Sigmoid( A(X + B)  +  C( X^2 ) )
 	expcal0 = arrayfire::mul(&temp0,&expcal0,false);
@@ -211,7 +211,7 @@ pub fn deriUAF(
 	// X + B 
 	let mut temp0 = arrayfire::add(X, B, true);
 	// X^2
-	let mut temp1 = arrayfire::pow(X,&two,false);
+	let mut temp1 = arrayfire::pow(X,&TWO_F64,false);
 
 	// -|C|
 	let mut temp2 = -arrayfire::abs(C);
@@ -245,7 +245,7 @@ pub fn deriUAF(
 
 
 	//A - 2|C|x
-	temp0 = two*arrayfire::mul(&temp2,X,true);
+	temp0 = TWO_F64*arrayfire::mul(&temp2,X,true);
 	temp0 = arrayfire::add(A, &temp0, true);
 	// (A - 2|C|x) Sigmoid( A(X + B)  -  |C|( X^2 ) )
 	expcal0 = arrayfire::mul(&temp0,&expcal0,false);
