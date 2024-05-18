@@ -58,18 +58,15 @@ pub fn UAF_initial_as_identity(
     let step_num: u64 = modeldata_int["step_num"].clone();
 
 
-    let del_unused_neuron: bool = netdata.del_unused_neuron.clone();
-
-
-    let time_step: f64 = netdata.time_step.clone();
-    let nratio: f64 = netdata.nratio.clone();
-    let neuron_std: f64 = netdata.neuron_std.clone();
-    let sphere_rad: f64 = netdata.sphere_rad.clone();
-    let neuron_rad: f64 = netdata.neuron_rad.clone();
-    let con_rad: f64 = netdata.con_rad.clone();
-    let center_const: f64 = netdata.center_const.clone();
-    let spring_const: f64 = netdata.spring_const.clone();
-    let repel_const: f64 = netdata.repel_const.clone();
+    let time_step: f64 = modeldata_float["time_step"].clone();
+    let nratio: f64 = modeldata_float["nratio"].clone();
+    let neuron_std: f64 = modeldata_float["neuron_std"].clone();
+    let sphere_rad: f64 = modeldata_float["sphere_rad"].clone();
+    let neuron_rad: f64 = modeldata_float["neuron_rad"].clone();
+    let con_rad: f64 = modeldata_float["con_rad"].clone();
+    let center_const: f64 = modeldata_float["center_const"].clone();
+    let spring_const: f64 = modeldata_float["spring_const"].clone();
+    let repel_const: f64 = modeldata_float["repel_const"].clone();
 
 
 
