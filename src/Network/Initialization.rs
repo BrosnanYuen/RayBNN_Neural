@@ -82,11 +82,11 @@ pub fn UAF_initial_as_identity<Z: arrayfire::RealFloating>(
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
     
-    *A = ONE + EPS1*neuron_std*arrayfire::randn::<f64>(H_dims);
-    *B = EPS1*neuron_std*arrayfire::randn::<f64>(H_dims);
-    *C = EPS2*neuron_std*arrayfire::randn::<f64>(H_dims);
-    *D = -ONE + EPS2*neuron_std*arrayfire::randn::<f64>(H_dims);
-    *E = EPS2*neuron_std*arrayfire::randn::<f64>(H_dims);
+    *A = ONE + EPS1*NEURONSTD*arrayfire::randn::<f64>(H_dims);
+    *B = EPS1*NEURONSTD*arrayfire::randn::<f64>(H_dims);
+    *C = EPS2*NEURONSTD*arrayfire::randn::<f64>(H_dims);
+    *D = -ONE + EPS2*NEURONSTD*arrayfire::randn::<f64>(H_dims);
+    *E = EPS2*NEURONSTD*arrayfire::randn::<f64>(H_dims);
 
 
 }
