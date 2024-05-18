@@ -20,7 +20,7 @@ pub fn ReLU<Z: arrayfire::RealFloating>(X: &arrayfire::Array<Z>) -> arrayfire::A
 }
 
 
-pub fn Softplus<Z: arrayfire::RealFloating>(X: &arrayfire::Array<f64>) -> arrayfire::Array<f64>
+pub fn Softplus<Z: arrayfire::RealFloating>(X: &arrayfire::Array<Z>) -> arrayfire::Array<Z>
 {
 	let mut temp = -arrayfire::abs(X);
 	temp = arrayfire::exp(&temp);
