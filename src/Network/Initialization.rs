@@ -37,8 +37,8 @@ const EPS2_F64: f64 = 0.00001;
 
 
 pub fn UAF_initial_as_identity<Z: arrayfire::FloatingPoint>(
-    modeldata_float:  HashMap<String, f64>,
-    modeldata_int:  HashMap<String, u64>,
+    modeldata_float:  &HashMap<String, f64>,
+    modeldata_int:  &HashMap<String, u64>,
 
 
     A: &mut arrayfire::Array<Z>,

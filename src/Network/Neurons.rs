@@ -33,9 +33,9 @@ const ONEHALF_F64: f64 = 0.5f64;
 
 
 pub fn print_netdata(
-    modeldata_string:  HashMap<String, String>,
-    modeldata_float:  HashMap<String, f64>,
-    modeldata_int:  HashMap<String, u64>,
+    modeldata_string:  &HashMap<String, String>,
+    modeldata_float:  &HashMap<String, f64>,
+    modeldata_int:  &HashMap<String, u64>,
 )
 {
     println!("\n\n******Network Information******");
