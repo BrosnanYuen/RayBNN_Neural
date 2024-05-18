@@ -28,14 +28,14 @@ fn test_init() {
 
     let neuron_size = 53;
 
-    let A_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
 	
-	let mut H = arrayfire::constant::<f64>(0.0,A_dims);
-	let mut A = arrayfire::constant::<f64>(0.0,A_dims);
-	let mut B = arrayfire::constant::<f64>(0.0,A_dims);
-	let mut C = arrayfire::constant::<f64>(0.0,A_dims);
-	let mut D = arrayfire::constant::<f64>(0.0,A_dims);
-	let mut E = arrayfire::constant::<f64>(0.0,A_dims);
+	let mut H = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut A = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut B = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut C = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut D = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut E = arrayfire::constant::<f64>(0.0,single_dims);
 
     let mut modeldata_float:  HashMap<String, f64> = HashMap::new();
     let mut modeldata_int:  HashMap<String, u64> = HashMap::new();
@@ -55,6 +55,21 @@ fn test_init() {
         &mut D,
         &mut E
     );
+
+    assert_eq!(A.dims()[0], neuron_size);
+    assert_eq!(B.dims()[0], neuron_size);
+    assert_eq!(C.dims()[0], neuron_size);
+    assert_eq!(D.dims()[0], neuron_size);
+    assert_eq!(E.dims()[0], neuron_size);
+
+    for i in 1..3
+    {
+        assert_eq!(A.dims()[i], 0);
+        assert_eq!(B.dims()[i], 0);
+        assert_eq!(C.dims()[i], 0);
+        assert_eq!(D.dims()[i], 0);
+        assert_eq!(E.dims()[i], 0);
+    }
 
 
 
