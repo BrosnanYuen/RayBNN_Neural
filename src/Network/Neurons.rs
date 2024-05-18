@@ -32,8 +32,26 @@ const ONEHALF_F64: f64 = 0.5f64;
 
 
 
+pub fn print_netdata(
+    modeldata_string: &HashMap<String, String>,
+    modeldata_float: &HashMap<String, String>,
+    modeldata_int: &HashMap<String, String>,
+)
+{
+    println!("\n\n******Network Information******");
+    for (key, value) in modeldata_string {
+        println!("{} : {}", key.clone(), value.clone());
+    }
 
+    for (key, value) in modeldata_float {
+        println!("{} : {}", key.clone(), value.clone());
+    }
 
+    for (key, value) in modeldata_int {
+        println!("{} : {}", key.clone(), value.clone());
+    }
+
+}
 
 
 
