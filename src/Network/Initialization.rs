@@ -27,7 +27,7 @@ const ONEHALF_F64: f64 = 0.5f64;
 
 
 const EPS1_F64: f64 = 0.0001;
-
+const EPS2_F64: f64 = 0.00001;
 
 
 
@@ -72,6 +72,8 @@ pub fn UAF_initial_as_identity(
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let ONE = arrayfire::constant::<f64>(ONE_F64,single_dims).cast::<Z>();
     let EPS1 = arrayfire::constant::<f64>(EPS1_F64,single_dims).cast::<Z>();
+    let EPS2 = arrayfire::constant::<f64>(EPS2_F64,single_dims).cast::<Z>();
+
 
 
 
@@ -79,9 +81,9 @@ pub fn UAF_initial_as_identity(
     
     *A = ONE + EPS1*neuron_std*arrayfire::randn::<f64>(H_dims);
     *B = EPS1*neuron_std*arrayfire::randn::<f64>(H_dims);
-    *C = 0.00001*neuron_std*arrayfire::randn::<f64>(H_dims);
-    *D = -ONE + 0.00001*neuron_std*arrayfire::randn::<f64>(H_dims);
-    *E = 0.00001*neuron_std*arrayfire::randn::<f64>(H_dims);
+    *C = EPS2*neuron_std*arrayfire::randn::<f64>(H_dims);
+    *D = -ONE + EPS2*neuron_std*arrayfire::randn::<f64>(H_dims);
+    *E = EPS2*neuron_std*arrayfire::randn::<f64>(H_dims);
 
 
 }
