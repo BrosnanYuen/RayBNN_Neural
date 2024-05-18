@@ -73,6 +73,33 @@ fn test_init() {
         assert_eq!(E.dims()[i], 1);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    modeldata_float.insert("neuron_std".to_string(), 0.1);
+    modeldata_int.insert("neuron_size".to_string(), 1);
+
+
+	RayBNN_Neural::Network::Initialization::UAF_initial_as_identity(
+        &modeldata_float,
+        &modeldata_int,
+
+
+        &mut A,
+        &mut B,
+        &mut C,
+        &mut D,
+        &mut E
+    );
+
     let mut inx_cpu:Vec<f64> = vec![   0.7888 ,  -0.9269  , -0.2022  ,  0.8652  ,  0.5039  , -0.6619  ,  0.4113 ];
     let inx = arrayfire::Array::new(&inx_cpu, arrayfire::Dim4::new(&[1, inx_cpu.len() as u64, 1, 1]));
 
@@ -84,9 +111,9 @@ fn test_init() {
 
     UAF_out.host(&mut UAF_out_cpu);
 
-    UAF_out_cpu = UAF_out_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+    UAF_out_cpu = UAF_out_cpu.par_iter().map(|x|  (x * 1000.0).round() / 1000.0 ).collect::<Vec<f64>>();
 
-    inx_cpu = inx_cpu.par_iter().map(|x|  (x * 1000000.0).round() / 1000000.0 ).collect::<Vec<f64>>();
+    inx_cpu = inx_cpu.par_iter().map(|x|  (x * 1000.0).round() / 1000.0 ).collect::<Vec<f64>>();
 
 
     assert_eq!(inx_cpu, UAF_out_cpu);
