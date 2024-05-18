@@ -82,10 +82,10 @@ pub fn UAF_initial_as_identity<Z: arrayfire::FloatingPoint>(
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
     
-    *A = ONE + EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
-    *B = EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
-    *C = EPS2*NEURONSTD*arrayfire::randn::<Z>(H_dims);
-    *D = EPS2*NEURONSTD*arrayfire::randn::<Z>(H_dims) -ONE;
+    *A = ONE.clone() + EPS1.clone()*NEURONSTD.clone()*arrayfire::randn::<Z>(H_dims);
+    *B = EPS1*NEURONSTD.clone()*arrayfire::randn::<Z>(H_dims);
+    *C = EPS2.clone()*NEURONSTD.clone()*arrayfire::randn::<Z>(H_dims);
+    *D = EPS2.clone()*NEURONSTD.clone()*arrayfire::randn::<Z>(H_dims) -ONE;
     *E = EPS2*NEURONSTD*arrayfire::randn::<Z>(H_dims);
 
 
@@ -95,7 +95,7 @@ pub fn UAF_initial_as_identity<Z: arrayfire::FloatingPoint>(
 
 
 
-
+/* 
 
 
 pub fn UAF_initial_as_tanh(
@@ -239,7 +239,7 @@ pub fn xavier_init(
 
 
 
-
+*/
 
 
 
