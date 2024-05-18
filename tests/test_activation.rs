@@ -112,7 +112,7 @@ fn test_neural() {
 	let mut dD = arrayfire::constant::<f64>(0.0, A.dims());
 	let mut dE = arrayfire::constant::<f64>(0.0, A.dims());
 
-	clusterdiffeq::neural::activation_f64::deriUAF(&inx,
+	RayBNN_Neural::Network::Activation::deriUAF(&inx,
 		&A,
 		&B,
 		&C,
