@@ -95,11 +95,10 @@ pub fn UAF_initial_as_identity<Z: arrayfire::FloatingPoint>(
 
 
 
-/* 
-
 
 pub fn UAF_initial_as_tanh(
-    netdata: &network_metadata_type,
+    modeldata_float:  &HashMap<String, f64>,
+    modeldata_int:  &HashMap<String, u64>,
 
 
 
@@ -110,27 +109,14 @@ pub fn UAF_initial_as_tanh(
     E: &mut arrayfire::Array<f64>)
 {
     
-    let neuron_size: u64 = netdata.neuron_size.clone();
-    let input_size: u64 = netdata.input_size.clone();
-    let output_size: u64 = netdata.output_size.clone();
-    let proc_num: u64 = netdata.proc_num.clone();
-    let active_size: u64 = netdata.active_size.clone();
-    let space_dims: u64 = netdata.space_dims.clone();
-    let step_num: u64 = netdata.step_num.clone();
+    let neuron_size: u64 = modeldata_int["neuron_size"].clone();
+    let neuron_std: f64 = modeldata_float["neuron_std"].clone();
 
-
-    let del_unused_neuron: bool = netdata.del_unused_neuron.clone();
-
-
-    let time_step: f64 = netdata.time_step.clone();
-    let nratio: f64 = netdata.nratio.clone();
-    let neuron_std: f64 = netdata.neuron_std.clone();
-    let sphere_rad: f64 = netdata.sphere_rad.clone();
-    let neuron_rad: f64 = netdata.neuron_rad.clone();
-    let con_rad: f64 = netdata.con_rad.clone();
-    let center_const: f64 = netdata.center_const.clone();
-    let spring_const: f64 = netdata.spring_const.clone();
-    let repel_const: f64 = netdata.repel_const.clone();
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let ONE = arrayfire::constant::<f64>(ONE_F64,single_dims).cast::<Z>();
+    let EPS1 = arrayfire::constant::<f64>(EPS1_F64,single_dims).cast::<Z>();
+    let EPS2 = arrayfire::constant::<f64>(EPS2_F64,single_dims).cast::<Z>();
+    let NEURONSTD = arrayfire::constant::<f64>(neuron_std,single_dims).cast::<Z>();
 
 
 
@@ -149,6 +135,8 @@ pub fn UAF_initial_as_tanh(
 
 
 
+
+/* 
 
 
 
