@@ -30,7 +30,7 @@ const EPS1_F64: f64 = 0.0001;
 const EPS2_F64: f64 = 0.00001;
 const EPS3_F64: f64 = 0.0000001;
 
-
+const CONST1_F64: f64 = 2.12616013f64;
 
 
 
@@ -118,9 +118,10 @@ pub fn UAF_initial_as_tanh<Z: arrayfire::FloatingPoint>(
     let EPS2 = arrayfire::constant::<f64>(EPS2_F64,single_dims).cast::<Z>();
     let NEURONSTD = arrayfire::constant::<f64>(neuron_std,single_dims).cast::<Z>();
     let EPS3 = arrayfire::constant::<f64>(EPS3_F64,single_dims).cast::<Z>();
+    let CONST1 = arrayfire::constant::<f64>(CONST1_F64,single_dims).cast::<Z>();
 
 
-
+    
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
     
@@ -128,7 +129,7 @@ pub fn UAF_initial_as_tanh<Z: arrayfire::FloatingPoint>(
     *B = (1.0f64/2.12616013f64) + EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
     *C = EPS3*NEURONSTD*arrayfire::randn::<Z>(H_dims);
     *D = 2.12616013f64 + EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
-    *E = EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims) - ONE   ;
+    *E = EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims) - ONE;
 
 
 }
