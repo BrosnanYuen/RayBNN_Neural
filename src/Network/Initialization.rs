@@ -128,7 +128,7 @@ pub fn UAF_initial_as_tanh<Z: arrayfire::FloatingPoint>(
     *B = (1.0f64/2.12616013f64) + EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
     *C = 0.0000001*NEURONSTD*arrayfire::randn::<Z>(H_dims);
     *D = 2.12616013f64 + EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
-    *E = -1.0f64 +  EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
+    *E = EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims) - ONE   ;
 
 
 }
