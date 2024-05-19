@@ -168,7 +168,7 @@ pub fn xavier_init(
     let mut out_idx = in_idx.clone();
     let mut valsel = arrayfire::constant::<i32>(0,temp_dims);
 
-    let COO_batch_size = 1 + ((COO_find_limit/WColIdx.dims()[0]) as u64);
+    let COO_batch_size = 1 + ((COO_FIND_LIMIT/WColIdx.dims()[0]) as u64);
 
 
     let mut input_degree = 0;
