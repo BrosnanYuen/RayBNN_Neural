@@ -126,10 +126,10 @@ pub fn UAF_initial_as_tanh<Z: arrayfire::FloatingPoint>(
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
     
-    *A = CONST1 + EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
-    *B = CONST2 + EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
-    *C = EPS3*NEURONSTD*arrayfire::randn::<Z>(H_dims);
-    *D = CONST1 + EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims);
+    *A = CONST1.clone() + EPS1.clone()*NEURONSTD.clone()*arrayfire::randn::<Z>(H_dims);
+    *B = CONST2 + EPS1.clone()*NEURONSTD.clone()*arrayfire::randn::<Z>(H_dims);
+    *C = EPS3*NEURONSTD.clone()*arrayfire::randn::<Z>(H_dims);
+    *D = CONST1 + EPS1.clone()*NEURONSTD.clone()*arrayfire::randn::<Z>(H_dims);
     *E = EPS1*NEURONSTD*arrayfire::randn::<Z>(H_dims) - ONE;
 
 
