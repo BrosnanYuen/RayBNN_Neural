@@ -23,7 +23,7 @@ half = { version = "2.3.1" , features = ["num-traits"] }
 RayBNN_Sparse = "0.1.5"
 RayBNN_DataLoader = "0.1.3"
 RayBNN_Graph = "0.1.0"
-RayBNN_Neural = "0.1.2"
+RayBNN_Neural = "0.1.3"
 ```
 
 # List of Examples

@@ -138,10 +138,6 @@ pub fn UAF_initial_as_tanh<Z: arrayfire::FloatingPoint>(
 
 
 
-/* 
-
-
-
 
 
 pub fn xavier_init(
@@ -226,10 +222,6 @@ pub fn xavier_init(
 
 
 
-
-
-
-*/
 
 
 
