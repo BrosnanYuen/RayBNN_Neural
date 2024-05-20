@@ -23,7 +23,7 @@ const ZERO_F64: f64 = 0.0;
 const ONE_F64: f64 = 1.0;
 const HIGH_F64: f64 = 1000000.0;
 const TWO_F64: f64 = 2.0;
-const ONEHALF_F64: f64 = 0.5f64;
+const ONEHALF_F64: f64 = 0.5;
 
 
 const EPS1_F64: f64 = 0.0001;
@@ -155,6 +155,7 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
 
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let EPS3 = arrayfire::constant::<f64>(EPS3_F64,single_dims).cast::<Z>();
+    let ONEHALF = arrayfire::constant::<f64>(ONEHALF_F64,single_dims).cast::<Z>();
 
 
         
@@ -193,7 +194,7 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
 
         let mulitiplier = (6.0f64/((input_degree + output_degree) as f64) ).sqrt()*2.0f64;
         let mut newWValues = arrayfire::randu::<Z>(valsel.dims());
-        newWValues = (newWValues - 0.5f64)*( mulitiplier );
+        newWValues = (newWValues - ONEHALF)*( mulitiplier );
 
         let mut idxrs = arrayfire::Indexer::default();
         idxrs.set_index(&valsel, 0, None);
@@ -204,7 +205,7 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
 
 
         let mut newH = arrayfire::randu::<Z>(out_idx.dims());
-        newH = (newH - 0.5f64)*( mulitiplier );
+        newH = (newH - ONEHALF)*( mulitiplier );
 
         let mut idxrs2 = arrayfire::Indexer::default();
         idxrs2.set_index(&out_idx, 0, None);
