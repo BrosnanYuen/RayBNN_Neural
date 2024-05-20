@@ -192,7 +192,10 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
 
         output_degree = valsel.dims()[0];
 
-        let mulitiplier = (6.0f64/((input_degree + output_degree) as f64) ).sqrt()*2.0f64;
+        let mulitiplier_f64 = (6.0f64/((input_degree + output_degree) as f64) ).sqrt()*2.0f64;
+        let mulitiplier = arrayfire::constant::<f64>(mulitiplier_f64,single_dims).cast::<Z>();
+
+        
         let mut newWValues = arrayfire::randu::<Z>(valsel.dims());
         newWValues = (newWValues - ONEHALF)*( mulitiplier );
 
