@@ -159,11 +159,11 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
 
 
         
-    *WValues = EPS3*arrayfire::randn::<Z>(WValues.dims());
+    *WValues = EPS3.clone()*arrayfire::randn::<Z>(WValues.dims());
 
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
-    *H = EPS3*arrayfire::randn::<Z>(H_dims);
+    *H = EPS3.clone()*arrayfire::randn::<Z>(H_dims);
 
 
 
@@ -197,7 +197,7 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
 
         
         let mut newWValues = arrayfire::randu::<Z>(valsel.dims());
-        newWValues = (newWValues - ONEHALF)*( mulitiplier );
+        newWValues = (newWValues - ONEHALF.clone())*( mulitiplier.clone() );
 
         let mut idxrs = arrayfire::Indexer::default();
         idxrs.set_index(&valsel, 0, None);
@@ -208,7 +208,7 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
 
 
         let mut newH = arrayfire::randu::<Z>(out_idx.dims());
-        newH = (newH - ONEHALF)*( mulitiplier );
+        newH = (newH - ONEHALF.clone())*( mulitiplier.clone() );
 
         let mut idxrs2 = arrayfire::Indexer::default();
         idxrs2.set_index(&out_idx, 0, None);
