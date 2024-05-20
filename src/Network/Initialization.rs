@@ -155,11 +155,11 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
 
 
         
-    *WValues = 0.000001f64*arrayfire::randn::<f64>(WValues.dims());
+    *WValues = 0.000001f64*arrayfire::randn::<Z>(WValues.dims());
 
 
     let H_dims = arrayfire::Dim4::new(&[neuron_size,1,1,1]);
-    *H = 0.000001f64*arrayfire::randn::<f64>(H_dims);
+    *H = 0.000001f64*arrayfire::randn::<Z>(H_dims);
 
 
 
