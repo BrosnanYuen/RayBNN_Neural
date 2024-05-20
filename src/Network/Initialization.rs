@@ -153,6 +153,9 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
 {
 
 
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let EPS3 = arrayfire::constant::<f64>(EPS3_F64,single_dims).cast::<Z>();
+
 
         
     *WValues = 0.000001f64*arrayfire::randn::<Z>(WValues.dims());
