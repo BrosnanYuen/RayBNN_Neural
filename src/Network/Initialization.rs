@@ -140,15 +140,15 @@ pub fn UAF_initial_as_tanh<Z: arrayfire::FloatingPoint>(
 
 
 
-pub fn xavier_init(
+pub fn xavier_init<Z: arrayfire::FloatingPoint>(
     in_idx: &arrayfire::Array<i32>,
     WRowIdxCOO: &arrayfire::Array<i32>,
     WColIdx: &arrayfire::Array<i32>,
     neuron_size: u64,
     depth: u64,
 
-    WValues: &mut arrayfire::Array<f64>,
-    H: &mut arrayfire::Array<f64>,
+    WValues: &mut arrayfire::Array<Z>,
+    H: &mut arrayfire::Array<Z>,
 )
 {
 
