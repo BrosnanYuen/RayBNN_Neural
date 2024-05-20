@@ -189,7 +189,7 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
         output_degree = valsel.dims()[0];
 
         let mulitiplier = (6.0f64/((input_degree + output_degree) as f64) ).sqrt()*2.0f64;
-        let mut newWValues = arrayfire::randu::<f64>(valsel.dims());
+        let mut newWValues = arrayfire::randu::<Z>(valsel.dims());
         newWValues = (newWValues - 0.5f64)*( mulitiplier );
 
         let mut idxrs = arrayfire::Indexer::default();
@@ -200,7 +200,7 @@ pub fn xavier_init<Z: arrayfire::FloatingPoint>(
         drop(idxrs);
 
 
-        let mut newH = arrayfire::randu::<f64>(out_idx.dims());
+        let mut newH = arrayfire::randu::<Z>(out_idx.dims());
         newH = (newH - 0.5f64)*( mulitiplier );
 
         let mut idxrs2 = arrayfire::Indexer::default();
