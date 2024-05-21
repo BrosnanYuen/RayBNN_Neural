@@ -94,7 +94,7 @@ Q:                   Internal State Matrix Q
 
 */
 
-pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint>(
+pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint<UnaryOutType = Z,AbsOutType = Z>   >(
     modeldata_int:  &HashMap<String, u64>,
 
 
@@ -159,7 +159,7 @@ pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint>(
     let WValues = arrayfire::index(network_params, Wseqs);
 
 
-    let W = arrayfire::sparse::<f64>(
+    let W = arrayfire::sparse::<Z>(
         neuron_size,
         neuron_size,
         &WValues,
