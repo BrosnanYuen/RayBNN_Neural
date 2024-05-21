@@ -122,12 +122,6 @@ pub fn state_space_forward_batch(
     Q: &mut arrayfire::Array<f64>
 ) {
 
-    let neuron_size: u64 = netdata.neuron_size.clone();
-    //let proc_num: u64 = netdata.proc_num.clone();
-    let input_size: u64 = netdata.input_size.clone();
-    let batch_size: u64 = netdata.batch_size.clone();
-
-
     let neuron_size: u64 = modeldata_int["neuron_size"].clone();
     let input_size: u64 = modeldata_int["input_size"].clone();
     let batch_size: u64 = modeldata_int["batch_size"].clone();
