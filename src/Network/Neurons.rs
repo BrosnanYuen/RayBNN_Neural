@@ -99,7 +99,7 @@ pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint>(
 
 
 
-    X: &arrayfire::Array<f64>,
+    X: &arrayfire::Array<Z>,
     
     WRowIdxCSR: &arrayfire::Array<i32>,
     WColIdx: &arrayfire::Array<i32>,
@@ -112,12 +112,12 @@ pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint>(
     Cseqs: &[arrayfire::Seq<i32>; 1],
     Dseqs: &[arrayfire::Seq<i32>; 1],
     Eseqs: &[arrayfire::Seq<i32>; 1],
-    network_params: &arrayfire::Array<f64>,
+    network_params: &arrayfire::Array<Z>,
 
 
 
-    Z: &mut arrayfire::Array<f64>,
-    Q: &mut arrayfire::Array<f64>
+    Z: &mut arrayfire::Array<Z>,
+    Q: &mut arrayfire::Array<Z>
 ) {
 
     let neuron_size: u64 = modeldata_int["neuron_size"].clone();
