@@ -95,7 +95,12 @@ Q:                   Internal State Matrix Q
 */
 
 pub fn state_space_forward_batch(
-    netdata: &network_metadata_type,
+    modeldata_string:  &HashMap<String, String>,
+    modeldata_float:  &HashMap<String, f64>,
+    modeldata_int:  &HashMap<String, u64>,
+
+
+
     X: &arrayfire::Array<f64>,
     
     WRowIdxCSR: &arrayfire::Array<i32>,
