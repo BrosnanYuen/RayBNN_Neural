@@ -20,9 +20,9 @@ fn test_statespace_batch() {
 
 
     let W_dims = arrayfire::Dim4::new(&[1,400,1,1]);
-    let mut W = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut W = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_W.csv",
-        W_dims
+        //W_dims
     );
     let W_dims = arrayfire::Dim4::new(&[20,20,1,1]);
 
@@ -37,9 +37,9 @@ fn test_statespace_batch() {
 
 
     let X_dims = arrayfire::Dim4::new(&[1,105,1,1]);
-    let mut X = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut X = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_X.csv",
-        X_dims
+        //X_dims
     );
 
     let X_dims = arrayfire::Dim4::new(&[5,3,7,1]);
@@ -55,18 +55,18 @@ fn test_statespace_batch() {
 
 
     let H_dims = arrayfire::Dim4::new(&[1,20,1,1]);
-    let mut H = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut H = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_H.csv",
-        H_dims
+        //H_dims
     );
 
     H = arrayfire::transpose(&H, false);
 
 
 
-    let mut A = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut A = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_A.csv",
-        H_dims
+        //H_dims
     );
 
     A = arrayfire::transpose(&A, false);
@@ -74,9 +74,9 @@ fn test_statespace_batch() {
 
 
 
-    let mut B = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut B = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_B.csv",
-        H_dims
+        //H_dims
     );
 
     B = arrayfire::transpose(&B, false);
@@ -84,9 +84,9 @@ fn test_statespace_batch() {
 
 
 
-    let mut C = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut C = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_C.csv",
-        H_dims
+        //H_dims
     );
 
     C = arrayfire::transpose(&C, false);
@@ -94,9 +94,9 @@ fn test_statespace_batch() {
 
 
 
-    let mut D = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut D = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_D.csv",
-        H_dims
+        //H_dims
     );
 
     D = arrayfire::transpose(&D, false);
@@ -104,9 +104,9 @@ fn test_statespace_batch() {
 
 
 
-    let mut E = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut E = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_E.csv",
-        H_dims
+        //H_dims
     );
 
     E = arrayfire::transpose(&E, false);
@@ -252,9 +252,9 @@ fn test_statespace_batch() {
 
 
     let Z_dims = arrayfire::Dim4::new(&[1,420,1,1]);
-    let mut Z_act = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut Z_act = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_Z.csv",
-        Z_dims
+        //Z_dims
     );
 
     let Z_dims = arrayfire::Dim4::new(&[20,3,7,1]);
@@ -290,9 +290,9 @@ fn test_statespace_batch() {
 
 
     let Q_dims = arrayfire::Dim4::new(&[1,420,1,1]);
-    let mut Q_act = clusterdiffeq::export::dataloader_f64::file_to_matrix(
+    let mut Q_act = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
         "./test_data/batch_Q.csv",
-        Q_dims
+        //Q_dims
     );
 
     let Q_dims = arrayfire::Dim4::new(&[20,3,7,1]);
