@@ -124,6 +124,10 @@ pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint>(
     let input_size: u64 = modeldata_int["input_size"].clone();
     let batch_size: u64 = modeldata_int["batch_size"].clone();
 
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
+    
+
 
 
     let Zslices:i64 = Z.dims()[2] as i64;
