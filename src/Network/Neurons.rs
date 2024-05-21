@@ -94,9 +94,7 @@ Q:                   Internal State Matrix Q
 
 */
 
-pub fn state_space_forward_batch(
-    modeldata_string:  &HashMap<String, String>,
-    modeldata_float:  &HashMap<String, f64>,
+pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint>(
     modeldata_int:  &HashMap<String, u64>,
 
 
