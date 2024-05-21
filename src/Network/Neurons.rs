@@ -127,6 +127,13 @@ pub fn state_space_forward_batch(
     let input_size: u64 = netdata.input_size.clone();
     let batch_size: u64 = netdata.batch_size.clone();
 
+
+    let neuron_size: u64 = modeldata_int["neuron_size"].clone();
+    let input_size: u64 = modeldata_int["input_size"].clone();
+    let batch_size: u64 = modeldata_int["batch_size"].clone();
+
+
+
     let Zslices:i64 = Z.dims()[2] as i64;
 
     let X_slices:i64 = X.dims()[2] as i64;
