@@ -255,6 +255,9 @@ grad:                   Gradient of all trainable parameters
 
 */
 
+
+/* 
+
 pub fn state_space_backward_group2(
     netdata: &network_metadata_type,
     X: &arrayfire::Array<f64>,
@@ -650,7 +653,7 @@ pub fn state_space_backward_group2(
 
 
 
-
+*/
 
 
 
