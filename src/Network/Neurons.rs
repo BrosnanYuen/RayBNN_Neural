@@ -135,7 +135,8 @@ pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint>(
     let X_slices:i64 = X.dims()[2] as i64;
 
     let S_dims = arrayfire::Dim4::new(&[neuron_size,batch_size,1,1]);
-    let mut S = arrayfire::constant::<f64>(0.0, S_dims);
+    //let mut S = arrayfire::constant::<f64>(0.0, S_dims);
+    let mut S = arrayfire::tile(&ZERO, S_dims);
 
 
     let mut tempx =  arrayfire::slice(X, 0);
