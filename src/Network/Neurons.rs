@@ -822,7 +822,7 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
     let mut tempW = arrayfire::constant::<f64>(0.0,temp_dims);
 
 
-    //let mut gtemperr = arrayfire::constant::<f64>(0.0,temp_dims);
+    
     let mut tempinx = arrayfire::constant::<f64>(0.0,temp_dims);
 
 
@@ -847,8 +847,6 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
 
-    //let mut keys = arrayfire::constant::<i32>(0,temp_dims);
-    //let mut vals = arrayfire::constant::<f64>(0.0,temp_dims);
 
 
 
