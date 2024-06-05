@@ -9,6 +9,8 @@ repository = "https://github.com/BrosnanYuen/RayBNN_Neural"
 keywords = ["deep-learning", "machine-learning", "neural-networks","CUDA","OpenCL"]
 license = "GPL-3.0-only"
 categories = ["science"]
+exclude = ["test_data/"]
+
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
