@@ -541,20 +541,20 @@ fn test_backstate_batch11() {
 
 
 
-
+	
 
 	let mut densegW_cpu = vec!(f64::default();densegW.elements());
 	densegW.host(&mut densegW_cpu);
 
 
-	densegW_cpu = clusterdiffeq::export::round_f64::rvector(&densegW_cpu, 9);
+	densegW_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&densegW_cpu, 9);
 
 
 	let mut gW_cpu = vec!(f64::default();gW_act.elements());
 	gW_act.host(&mut gW_cpu);
 
 
-	gW_cpu = clusterdiffeq::export::round_f64::rvector(&gW_cpu, 9);
+	gW_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gW_cpu, 9);
 
 
 	assert_eq!(gW_cpu,densegW_cpu);
@@ -574,10 +574,10 @@ fn test_backstate_batch11() {
 	let mut gH_cpu = vec!(f64::default();gH.elements());
 	gH.host(&mut gH_cpu);
 
-	gH_cpu = clusterdiffeq::export::round_f64::rvector(&gH_cpu, 9);
+	gH_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gH_cpu, 9);
 
 	let mut gH_act_cpu = gH_nparr.into_raw_vec();
-	gH_act_cpu = clusterdiffeq::export::round_f64::rvector(&gH_act_cpu, 9);
+	gH_act_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gH_act_cpu, 9);
 
 	for qq in 0..gH_act_cpu.len()
 	{
@@ -599,10 +599,10 @@ fn test_backstate_batch11() {
 	let mut gA_cpu = vec!(f64::default();gA.elements());
 	gA.host(&mut gA_cpu);
 
-	gA_cpu = clusterdiffeq::export::round_f64::rvector(&gA_cpu, 9);
+	gA_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gA_cpu, 9);
 
 	let mut gA_act_cpu = gA_nparr.into_raw_vec();
-	gA_act_cpu = clusterdiffeq::export::round_f64::rvector(&gA_act_cpu, 9);
+	gA_act_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gA_act_cpu, 9);
 
 	for qq in 0..gA_act_cpu.len()
 	{
@@ -628,10 +628,10 @@ fn test_backstate_batch11() {
 	let mut gB_cpu = vec!(f64::default();gB.elements());
 	gB.host(&mut gB_cpu);
 
-	gB_cpu = clusterdiffeq::export::round_f64::rvector(&gB_cpu, 9);
+	gB_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gB_cpu, 9);
 
 	let mut gB_act_cpu = gB_nparr.into_raw_vec();
-	gB_act_cpu = clusterdiffeq::export::round_f64::rvector(&gB_act_cpu, 9);
+	gB_act_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gB_act_cpu, 9);
 
 	for qq in 0..gB_act_cpu.len()
 	{
@@ -651,10 +651,10 @@ fn test_backstate_batch11() {
 	let mut gC_cpu = vec!(f64::default();gC.elements());
 	gC.host(&mut gC_cpu);
 
-	gC_cpu = clusterdiffeq::export::round_f64::rvector(&gC_cpu, 9);
+	gC_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gC_cpu, 9);
 
 	let mut gC_act_cpu = gC_nparr.into_raw_vec();
-	gC_act_cpu = clusterdiffeq::export::round_f64::rvector(&gC_act_cpu, 9);
+	gC_act_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gC_act_cpu, 9);
 
 	for qq in 0..gC_act_cpu.len()
 	{
@@ -673,10 +673,10 @@ fn test_backstate_batch11() {
 	let mut gD_cpu = vec!(f64::default();gD.elements());
 	gD.host(&mut gD_cpu);
 
-	gD_cpu = clusterdiffeq::export::round_f64::rvector(&gD_cpu, 9);
+	gD_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gD_cpu, 9);
 
 	let mut gD_act_cpu = gD_nparr.into_raw_vec();
-	gD_act_cpu = clusterdiffeq::export::round_f64::rvector(&gD_act_cpu, 9);
+	gD_act_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gD_act_cpu, 9);
 
 	for qq in 0..gD_act_cpu.len()
 	{
@@ -694,10 +694,10 @@ fn test_backstate_batch11() {
 	let mut gE_cpu = vec!(f64::default();gE.elements());
 	gE.host(&mut gE_cpu);
 
-	gE_cpu = clusterdiffeq::export::round_f64::rvector(&gE_cpu, 9);
+	gE_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gE_cpu, 9);
 
 	let mut gE_act_cpu = gE_nparr.into_raw_vec();
-	gE_act_cpu = clusterdiffeq::export::round_f64::rvector(&gE_act_cpu, 9);
+	gE_act_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gE_act_cpu, 9);
 
 	for qq in 0..gE_act_cpu.len()
 	{
