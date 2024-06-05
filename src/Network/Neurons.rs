@@ -929,8 +929,10 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint<UnaryOutType = Z,
 
 
         //Join all
+        
+        //UAFgroup = arrayfire::constant::<f64>(0.0,arrayfire::Dim4::new(&[dA.dims()[0]*5 , dA.dims()[1],1,1]));
+        UAFgroup = arrayfire::tile(&ZERO, arrayfire::Dim4::new(&[dA.dims()[0]*5 , dA.dims()[1],1,1]));
 
-        UAFgroup = arrayfire::constant::<f64>(0.0,arrayfire::Dim4::new(&[dA.dims()[0]*5 , dA.dims()[1],1,1]));
         arrayfire::assign_seq(&mut UAFgroup, &dAseqs_out[&i], &dA);
         arrayfire::assign_seq(&mut UAFgroup, &dBseqs_out[&i], &dB);
         arrayfire::assign_seq(&mut UAFgroup, &dCseqs_out[&i], &dC);
