@@ -233,9 +233,9 @@ fn test_statespace_batch() {
 	arrayfire::assign_seq(&mut network_params, &Eseqs, &E);	
 
 
-
-    clusterdiffeq::neural::network_f64::state_space_forward_batch(
-        &netdata,
+    
+    RayBNN_Neural::Network::Neurons::state_space_forward_batch(
+        &modeldata_int,
         &X,
         
         &WRowIdxCSR,
