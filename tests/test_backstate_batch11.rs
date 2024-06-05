@@ -288,7 +288,9 @@ fn test_backstate_batch11() {
 	
 
 	RayBNN_Neural::Network::Neurons::find_path_backward_group2(
-		&netdata,
+		//&netdata,
+		&modeldata_int,
+
 		proc_num,
 		1, 
 		&WRowIdxCOO,
