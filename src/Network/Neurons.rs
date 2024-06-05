@@ -652,7 +652,7 @@ grad:                   Gradient of all trainable parameters
 
 
 
-pub fn state_space_backward_group2(
+pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
     //netdata: &network_metadata_type,
     modeldata_int:  &HashMap<String, u64>,
 
