@@ -72,18 +72,33 @@ fn test_backstate_batch11() {
 	let proc_num: u64 = 4;
 
 
-	let mut netdata = clusterdiffeq::neural::network_f64::create_nullnetdata();
+	
 
 	let temp_dims = arrayfire::Dim4::new(&[1,1,1,1]);
 
-
-
+	/* 
+	let mut netdata = clusterdiffeq::neural::network_f64::create_nullnetdata();
 	netdata.input_size = input_size;
 	netdata.output_size = output_size;
 	netdata.neuron_size = neuron_size;
 	netdata.proc_num = proc_num;
 	netdata.active_size = neuron_size;
 	netdata.batch_size = batch_size;
+	*/
+
+
+    let mut modeldata_int: HashMap<String,u64> = HashMap::new();
+
+    modeldata_int.insert("neuron_size".to_string(), neuron_size);
+    modeldata_int.insert("input_size".to_string(), input_size);
+    modeldata_int.insert("output_size".to_string(), output_size);
+    modeldata_int.insert("proc_num".to_string(), proc_num);
+    //modeldata_int.insert("active_size".to_string(), active_size);
+    //modeldata_int.insert("space_dims".to_string(), space_dims);
+    //modeldata_int.insert("step_num".to_string(), step_num);
+    modeldata_int.insert("batch_size".to_string(), batch_size);
+
+
 
 	
 
