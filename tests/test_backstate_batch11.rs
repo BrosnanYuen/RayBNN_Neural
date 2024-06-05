@@ -431,7 +431,7 @@ fn test_backstate_batch11() {
 
 
 	println!("a2");
-
+	
 	
 	RayBNN_Neural::Network::Neurons::state_space_backward_group2(
 		//&netdata,
@@ -450,7 +450,7 @@ fn test_backstate_batch11() {
 		&Z,
 		&Q,
 		&Y,
-		clusterdiffeq::optimal::loss_f64::MSE_grad,
+		RayBNN_Optimizer::Continuous::Loss::MSE_grad,
 		&neuron_idx,
 
 
