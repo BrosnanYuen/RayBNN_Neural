@@ -24,11 +24,11 @@ const COO_FIND_LIMIT: u64 = 1500000000;
 
 
 
-const ZERO_F64: f64 = 0.0;
-const ONE_F64: f64 = 1.0;
-const HIGH_F64: f64 = 1000000.0;
-const TWO_F64: f64 = 2.0;
-const ONEHALF_F64: f64 = 0.5f64;
+const ZERO_Z: Z = 0.0;
+const ONE_Z: Z = 1.0;
+const HIGH_Z: Z = 1000000.0;
+const TWO_Z: Z = 2.0;
+const ONEHALF_Z: Z = 0.5Z;
 
 
 
@@ -45,7 +45,7 @@ pub fn print_dims<Z: arrayfire::HasAfEnum>(
 
 pub fn print_netdata(
     modeldata_string:  &HashMap<String, String>,
-    modeldata_float:  &HashMap<String, f64>,
+    modeldata_float:  &HashMap<String, Z>,
     modeldata_int:  &HashMap<String, u64>,
 )
 {
@@ -516,7 +516,7 @@ pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint<UnaryOutType = Z,Ab
     let batch_size: u64 = modeldata_int["batch_size"].clone();
 
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
-    let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
+    let ZERO = arrayfire::constant::<Z>(ZERO_Z,single_dims).cast::<Z>();
     
 
 
@@ -526,12 +526,12 @@ pub fn state_space_forward_batch<Z: arrayfire::FloatingPoint<UnaryOutType = Z,Ab
     let X_slices:i64 = X.dims()[2] as i64;
 
     let S_dims = arrayfire::Dim4::new(&[neuron_size,batch_size,1,1]);
-    //let mut S = arrayfire::constant::<f64>(0.0, S_dims);
+    //let mut S = arrayfire::constant::<Z>(0.0, S_dims);
     let mut S = arrayfire::tile(&ZERO, S_dims);
 
 
     let mut tempx =  arrayfire::slice(X, 0);
-    let seqs = &[arrayfire::Seq::new(0.0f64, (input_size-1) as f64, 1.0f64),  arrayfire::Seq::default()];
+    let seqs = &[arrayfire::Seq::new(0.0Z, (input_size-1) as Z, 1.0Z),  arrayfire::Seq::default()];
 
 
 
@@ -657,19 +657,19 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
     modeldata_int:  &HashMap<String, u64>,
 
 
-    X: &arrayfire::Array<f64>,
+    X: &arrayfire::Array<Z>,
 
 
 
-    network_params: &arrayfire::Array<f64>,
+    network_params: &arrayfire::Array<Z>,
 
 
 
 
-    Z: &arrayfire::Array<f64>,
-    Q: &arrayfire::Array<f64>,
-    Y: &arrayfire::Array<f64>,
-    loss_grad: impl Fn(&arrayfire::Array<f64>, &arrayfire::Array<f64>) -> arrayfire::Array<f64>,
+    Z: &arrayfire::Array<Z>,
+    Q: &arrayfire::Array<Z>,
+    Y: &arrayfire::Array<Z>,
+    loss_grad: impl Fn(&arrayfire::Array<Z>, &arrayfire::Array<Z>) -> arrayfire::Array<Z>,
     neuron_idx: &arrayfire::Array<i32>,
 
 
@@ -707,7 +707,7 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
 
-    grad: &mut arrayfire::Array<f64>,
+    grad: &mut arrayfire::Array<Z>,
 ) {
     /* 
     let neuron_size: u64 = netdata.neuron_size.clone();
@@ -732,7 +732,7 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
     //Set output to zero
-    *grad = arrayfire::constant::<f64>(0.0,network_params.dims());
+    *grad = arrayfire::constant::<Z>(0.0,network_params.dims());
 
 
 
@@ -752,8 +752,8 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
     //Get Yhat
     let mut idxrs = arrayfire::Indexer::default();
-    let seq1 = arrayfire::Seq::new(0.0f64, (batch_size-1) as f64, 1.0);
-    let seq2 = arrayfire::Seq::new((proc_num-1) as f64, (Qslices-1) as f64, 1.0);
+    let seq1 = arrayfire::Seq::new(0.0Z, (batch_size-1) as Z, 1.0);
+    let seq2 = arrayfire::Seq::new((proc_num-1) as Z, (Qslices-1) as Z, 1.0);
     idxrs.set_index(&idxsel, 0, None);
     idxrs.set_index(&seq1, 1, None);
     idxrs.set_index(&seq2, 2, None);
@@ -780,47 +780,47 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
 
-    let mut inx = arrayfire::constant::<f64>(0.0,S_dims);
+    let mut inx = arrayfire::constant::<Z>(0.0,S_dims);
 
     let mut tempx =  arrayfire::slice(X, 0);
 
 
-    let seqs = &[arrayfire::Seq::new(0.0f64, (input_size-1) as f64, 1.0f64),  arrayfire::Seq::default()];
+    let seqs = &[arrayfire::Seq::new(0.0Z, (input_size-1) as Z, 1.0Z),  arrayfire::Seq::default()];
 
 
     let mut Xtemp = arrayfire::slice(Z, 0);
 
 
-    let mut sA = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut sB = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut sC = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut sD = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut sE = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut sA = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut sB = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut sC = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut sD = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut sE = arrayfire::constant::<Z>(0.0,temp_dims);
 
 
 
 
-    let mut dX = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dA = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dB = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dC = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dD = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dE = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut dX = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut dA = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut dB = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut dC = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut dD = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut dE = arrayfire::constant::<Z>(0.0,temp_dims);
 
 
 
 
-    let mut tempW = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut tempW = arrayfire::constant::<Z>(0.0,temp_dims);
 
 
-    //let mut gtemperr = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut tempinx = arrayfire::constant::<f64>(0.0,temp_dims);
+    //let mut gtemperr = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut tempinx = arrayfire::constant::<Z>(0.0,temp_dims);
 
 
 
-    let mut tempdX = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut tempgW = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut tempgH = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut tempdX = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut tempgW = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut tempgH = arrayfire::constant::<Z>(0.0,temp_dims);
 
 
 
@@ -832,20 +832,20 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
 
-    let batchseq = arrayfire::Seq::new(0.0f64, (batch_size-1) as f64, 1.0);
-    let mut sliceseq = arrayfire::Seq::new((proc_num-1) as f64, (Qslices-1) as f64, 1.0);
+    let batchseq = arrayfire::Seq::new(0.0Z, (batch_size-1) as Z, 1.0);
+    let mut sliceseq = arrayfire::Seq::new((proc_num-1) as Z, (Qslices-1) as Z, 1.0);
 
 
 
 
     //let mut keys = arrayfire::constant::<i32>(0,temp_dims);
-    //let mut vals = arrayfire::constant::<f64>(0.0,temp_dims);
+    //let mut vals = arrayfire::constant::<Z>(0.0,temp_dims);
 
 
 
 
-    let mut UAFgroup = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut tileerror = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut UAFgroup = arrayfire::constant::<Z>(0.0,temp_dims);
+    let mut tileerror = arrayfire::constant::<Z>(0.0,temp_dims);
     let tileerror_dims = arrayfire::Dim4::new(&[5,1,1,1]);
 
 
@@ -858,7 +858,7 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
         //Select X value
         let mut idxrs = arrayfire::Indexer::default();
-        sliceseq = arrayfire::Seq::new(i as f64, i as f64, 1.0);
+        sliceseq = arrayfire::Seq::new(i as Z, i as Z, 1.0);
         idxrs.set_index(&idxsel_out[&i], 0, None);
         idxrs.set_index(&batchseq, 1, None);
         idxrs.set_index(&sliceseq, 2, None);
@@ -923,7 +923,7 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
         //Join all
 
-        UAFgroup = arrayfire::constant::<f64>(0.0,arrayfire::Dim4::new(&[dA.dims()[0]*5 , dA.dims()[1],1,1]));
+        UAFgroup = arrayfire::constant::<Z>(0.0,arrayfire::Dim4::new(&[dA.dims()[0]*5 , dA.dims()[1],1,1]));
         arrayfire::assign_seq(&mut UAFgroup, &dAseqs_out[&i], &dA);
         arrayfire::assign_seq(&mut UAFgroup, &dBseqs_out[&i], &dB);
         arrayfire::assign_seq(&mut UAFgroup, &dCseqs_out[&i], &dC);
@@ -972,7 +972,7 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
         //Get input values
-        inx = arrayfire::constant::<f64>(0.0,S_dims);
+        inx = arrayfire::constant::<Z>(0.0,S_dims);
 
         if (i > 0)
         {
@@ -1017,7 +1017,7 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
         //Propagate Errors
         tempW = arrayfire::lookup(network_params, &sparseval_out[&i], 0);
 
-        tempW = arrayfire::sparse::<f64>(
+        tempW = arrayfire::sparse::<Z>(
             nrows_out[&i],
             dX.dims()[0],
             &tempW,
