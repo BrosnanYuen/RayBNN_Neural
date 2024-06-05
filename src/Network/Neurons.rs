@@ -17,6 +17,8 @@ use RayBNN_Sparse::Util::Search::find_unique;
 
 use RayBNN_Sparse::Util::Convert::remap_rows;
 
+use RayBNN_Sparse::Util::Convert::get_global_weight_idx2;
+
 
 const COO_FIND_LIMIT: u64 = 1500000000;
 
