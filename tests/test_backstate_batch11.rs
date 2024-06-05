@@ -5,6 +5,7 @@ use arrayfire;
 use RayBNN_DataLoader;
 use RayBNN_Graph;
 use RayBNN_Neural;
+use RayBNN_Optimizer;
 
 use std::collections::HashMap;
 use nohash_hasher;

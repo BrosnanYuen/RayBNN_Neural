@@ -23,6 +23,7 @@ half = { version = "2.4.1" , features = ["num-traits"] }
 RayBNN_DataLoader = "2.0.2"
 RayBNN_Graph = "2.0.1"
 RayBNN_Sparse = "2.0.1"
+RayBNN_Optimizer = "2.0.1"
 RayBNN_Neural = "2.0.1"
 ```
 
