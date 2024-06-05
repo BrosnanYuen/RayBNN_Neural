@@ -162,7 +162,7 @@ pub fn find_path_backward_group2(
 
 
 
-    let COO_batch_size = 1 + ((COO_find_limit/WRowIdxCOO.dims()[0]) as u64);
+    let COO_batch_size = 1 + ((COO_FIND_LIMIT/WRowIdxCOO.dims()[0]) as u64);
 
 
 
