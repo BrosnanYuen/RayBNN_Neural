@@ -979,7 +979,8 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint<UnaryOutType = Z,
 
 
         //Get input values
-        inx = arrayfire::constant::<f64>(0.0,S_dims);
+        //inx = arrayfire::constant::<f64>(0.0,S_dims);
+        inx = arrayfire::tile(&ZERO, S_dims);
 
         if (i > 0)
         {
