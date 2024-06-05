@@ -6,6 +6,8 @@ use RayBNN_DataLoader;
 use RayBNN_Graph;
 use RayBNN_Neural;
 
+use std::collections::HashMap;
+
 const BACK_END: arrayfire::Backend = arrayfire::Backend::CUDA;
 const DEVICE: i32 = 0;
 
@@ -120,7 +122,7 @@ fn test_statespace_batch() {
 	let mut Q = arrayfire::constant::<f64>(0.0,Z_dims);
 
 
-
+    /* 
     let netdata: clusterdiffeq::neural::network_f64::network_metadata_type = clusterdiffeq::neural::network_f64::network_metadata_type {
 		neuron_size: 20,
 	    input_size: 5,
@@ -145,8 +147,18 @@ fn test_statespace_batch() {
 		spring_const: 0.01,
 		repel_const: 10.0
 	};
+    */
 
+    let mut modeldata_int: HashMap<String,u64> = HashMap::new();
 
+    modeldata_int.insert("neuron_size".to_string(), 20);
+    modeldata_int.insert("input_size".to_string(), 5);
+    modeldata_int.insert("output_size".to_string(), 2);
+    modeldata_int.insert("proc_num".to_string(), 7);
+    modeldata_int.insert("active_size".to_string(), 30);
+    modeldata_int.insert("space_dims".to_string(), 3);
+    modeldata_int.insert("step_num".to_string(), 100);
+    modeldata_int.insert("batch_size".to_string(), 3);
 
 
 
