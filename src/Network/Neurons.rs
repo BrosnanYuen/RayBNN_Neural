@@ -730,6 +730,13 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
 
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
+    
+
+
+
+
 
     //Set output to zero
     *grad = arrayfire::constant::<f64>(0.0,network_params.dims());
