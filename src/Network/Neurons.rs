@@ -819,17 +819,17 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
 
-    let mut tempW = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut tempW = ZERO.clone();
 
 
     
-    let mut tempinx = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut tempinx = ZERO.clone();
 
 
 
-    let mut tempdX = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut tempgW = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut tempgH = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut tempdX = ZERO.clone();
+    let mut tempgW = ZERO.clone();
+    let mut tempgH = ZERO.clone();
 
 
 
@@ -851,8 +851,8 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
 
-    let mut UAFgroup = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut tileerror = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut UAFgroup = ZERO.clone();
+    let mut tileerror = ZERO.clone();
     let tileerror_dims = arrayfire::Dim4::new(&[5,1,1,1]);
 
 
