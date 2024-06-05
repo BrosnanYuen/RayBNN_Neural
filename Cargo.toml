@@ -24,7 +24,8 @@ RayBNN_Graph = "2.0.1"
 RayBNN_Sparse = "2.0.1"
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-
+ndarray = "0.15.6"
+ndarray_npy = "0.8.1"
 
 [dev-dependencies]
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
@@ -37,7 +38,8 @@ RayBNN_Graph = "2.0.1"
 RayBNN_Sparse = "2.0.1"
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-
+ndarray = "0.15.6"
+ndarray_npy = "0.8.1"
 
 [build-dependencies]
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
@@ -50,7 +52,8 @@ RayBNN_Graph = "2.0.1"
 RayBNN_Sparse = "2.0.1"
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-
+ndarray = "0.15.6"
+ndarray_npy = "0.8.1"
 
 [lib]
 name = "RayBNN_Neural"
