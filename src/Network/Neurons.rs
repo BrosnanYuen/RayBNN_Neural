@@ -78,7 +78,11 @@ pub fn print_netdata(
 
 
 pub fn find_path_backward_group2(
-    netdata: &network_metadata_type,
+    //netdata: &network_metadata_type,
+    modeldata_int:  &HashMap<String, u64>,
+
+
+
     Xslices: u64,
     Yslices: u64,
     WRowIdxCOO: &arrayfire::Array<i32>,
@@ -140,6 +144,7 @@ pub fn find_path_backward_group2(
     Eseqs: &mut [arrayfire::Seq<i32>; 1]
 
 ) {
+    /* 
     let neuron_size: u64 = netdata.neuron_size.clone();
 	let input_size: u64 = netdata.input_size.clone();
 	let output_size: u64 = netdata.output_size.clone();
@@ -148,6 +153,12 @@ pub fn find_path_backward_group2(
 	let space_dims: u64 = netdata.space_dims.clone();
 	let step_num: u64 = netdata.step_num.clone();
     let batch_size: u64 = netdata.batch_size.clone();
+    */
+
+    let neuron_size: u64 = modeldata_int["neuron_size"].clone();
+
+
+
 
 
 
