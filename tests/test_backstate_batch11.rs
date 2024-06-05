@@ -403,7 +403,10 @@ fn test_backstate_batch11() {
 	
 
 	RayBNN_Neural::Network::Neurons::state_space_forward_batch(
-		&netdata,
+		//&netdata,
+		&modeldata_int,
+
+
 		&X,
 		
 		&WRowIdxCSR,
