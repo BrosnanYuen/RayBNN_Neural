@@ -15,6 +15,8 @@ use RayBNN_Sparse::Util::Search::COO_batch_find;
 
 use RayBNN_Sparse::Util::Search::find_unique;
 
+use RayBNN_Sparse::Util::Convert::remap_rows;
+
 
 const COO_FIND_LIMIT: u64 = 1500000000;
 
