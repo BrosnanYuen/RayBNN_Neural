@@ -657,19 +657,19 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
     modeldata_int:  &HashMap<String, u64>,
 
 
-    X: &arrayfire::Array<f64>,
+    X: &arrayfire::Array<Z>,
 
 
 
-    network_params: &arrayfire::Array<f64>,
+    network_params: &arrayfire::Array<Z>,
 
 
 
 
-    Z: &arrayfire::Array<f64>,
-    Q: &arrayfire::Array<f64>,
-    Y: &arrayfire::Array<f64>,
-    loss_grad: impl Fn(&arrayfire::Array<f64>, &arrayfire::Array<f64>) -> arrayfire::Array<f64>,
+    Z: &arrayfire::Array<Z>,
+    Q: &arrayfire::Array<Z>,
+    Y: &arrayfire::Array<Z>,
+    loss_grad: impl Fn(&arrayfire::Array<Z>, &arrayfire::Array<Z>) -> arrayfire::Array<Z>,
     neuron_idx: &arrayfire::Array<i32>,
 
 
@@ -707,7 +707,7 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
 
-    grad: &mut arrayfire::Array<f64>,
+    grad: &mut arrayfire::Array<Z>,
 ) {
     /* 
     let neuron_size: u64 = netdata.neuron_size.clone();
