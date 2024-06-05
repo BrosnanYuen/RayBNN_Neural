@@ -68,6 +68,377 @@ pub fn print_netdata(
 
 
 
+
+
+
+
+
+
+
+
+
+pub fn find_path_backward_group2(
+    netdata: &network_metadata_type,
+    Xslices: u64,
+    Yslices: u64,
+    WRowIdxCOO: &arrayfire::Array<i32>,
+    WColIdx: &arrayfire::Array<i32>,
+    neuron_idx: &arrayfire::Array<i32>,
+
+
+    Wdims0: u64,
+    Hdims0: u64,
+    Adims0: u64,
+    Bdims0: u64,
+    Cdims0: u64,
+    Ddims0: u64,
+    Edims0: u64,
+
+
+
+    idxsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    valsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    
+    cvec_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    dXsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    
+
+    nrows_out: &mut nohash_hasher::IntMap<i64, u64 >,
+    sparseval_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    sparserow_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    sparsecol_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+
+
+
+    Hidxsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    Aidxsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    Bidxsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    Cidxsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    Didxsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    Eidxsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+    combidxsel_out: &mut nohash_hasher::IntMap<i64, arrayfire::Array<i32> >,
+
+
+
+
+
+    dAseqs_out: &mut nohash_hasher::IntMap<i64, [arrayfire::Seq<i32>; 2] >,
+    dBseqs_out: &mut nohash_hasher::IntMap<i64, [arrayfire::Seq<i32>; 2] >,
+    dCseqs_out: &mut nohash_hasher::IntMap<i64, [arrayfire::Seq<i32>; 2] >,
+    dDseqs_out: &mut nohash_hasher::IntMap<i64, [arrayfire::Seq<i32>; 2] >,
+    dEseqs_out: &mut nohash_hasher::IntMap<i64, [arrayfire::Seq<i32>; 2] >,
+
+
+
+    
+    Wseqs: &mut [arrayfire::Seq<i32>; 1],
+    Hseqs: &mut [arrayfire::Seq<i32>; 1],
+    Aseqs: &mut [arrayfire::Seq<i32>; 1],
+    Bseqs: &mut [arrayfire::Seq<i32>; 1],
+    Cseqs: &mut [arrayfire::Seq<i32>; 1],
+    Dseqs: &mut [arrayfire::Seq<i32>; 1],
+    Eseqs: &mut [arrayfire::Seq<i32>; 1]
+
+) {
+    let neuron_size: u64 = netdata.neuron_size.clone();
+	let input_size: u64 = netdata.input_size.clone();
+	let output_size: u64 = netdata.output_size.clone();
+	let proc_num: u64 = netdata.proc_num.clone();
+	let active_size: u64 = netdata.active_size.clone();
+	let space_dims: u64 = netdata.space_dims.clone();
+	let step_num: u64 = netdata.step_num.clone();
+    let batch_size: u64 = netdata.batch_size.clone();
+
+
+
+    let COO_batch_size = 1 + ((COO_find_limit/WRowIdxCOO.dims()[0]) as u64);
+
+
+
+    //Get current selection of neurons
+    let active_size = neuron_idx.dims()[0];
+    let mut newidxsel = arrayfire::rows(neuron_idx, (active_size-output_size) as i64, (active_size-1)   as i64);
+    let mut idxsel = newidxsel.clone();
+    let mut output_idxsel = newidxsel.clone();
+
+
+    
+    let mut yslicidx: i64 = (Yslices-1) as i64;
+
+
+
+    let temp_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+
+    let mut valsel = arrayfire::constant::<i32>(0,temp_dims);
+    
+    let mut rvec = arrayfire::constant::<i32>(0,temp_dims);
+
+    let mut cvec = arrayfire::constant::<i32>(0,temp_dims);
+
+    let mut dXsel = arrayfire::constant::<i32>(0,temp_dims);
+
+
+    let mut sparseval = arrayfire::constant::<i32>(0,temp_dims);
+    let mut sparserow = arrayfire::constant::<i32>(0,temp_dims);
+    let mut sparsecol = arrayfire::constant::<i32>(0,temp_dims);
+    let mut gidx1 = arrayfire::constant::<u64>(0,temp_dims);
+
+
+
+
+    let Hoffset = Wdims0 as i32;
+    let Aoffset = (Wdims0 + Hdims0) as i32;
+    let Boffset = ((Aoffset as u64) + Adims0) as i32;
+    let Coffset = ((Boffset as u64) + Bdims0) as i32;
+    let Doffset = ((Coffset as u64) + Cdims0) as i32;
+    let Eoffset = ((Doffset as u64) + Ddims0) as i32;
+
+
+
+
+    let mut Hidxsel = idxsel.clone();
+    let mut Aidxsel = idxsel.clone();
+    let mut Bidxsel = idxsel.clone();
+    let mut Cidxsel = idxsel.clone();
+    let mut Didxsel = idxsel.clone();
+    let mut Eidxsel = idxsel.clone();
+    let mut combidxsel = idxsel.clone();
+
+
+
+
+    //Main loop
+    for i in (0i64..(Xslices as i64)).rev() {
+        idxsel = newidxsel.clone();
+        idxsel_out.insert(i, idxsel.clone());
+
+
+
+        Hidxsel = Hoffset + idxsel.clone();
+        Aidxsel = Aoffset + idxsel.clone();
+        Bidxsel = Boffset + idxsel.clone();
+        Cidxsel = Coffset + idxsel.clone();
+        Didxsel = Doffset + idxsel.clone();
+        Eidxsel = Eoffset + idxsel.clone();
+
+        Hidxsel_out.insert(i, Hidxsel.clone());
+        Aidxsel_out.insert(i, Aidxsel.clone());
+        Bidxsel_out.insert(i, Bidxsel.clone());
+        Cidxsel_out.insert(i, Cidxsel.clone());
+        Didxsel_out.insert(i, Didxsel.clone());
+        Eidxsel_out.insert(i, Eidxsel.clone());
+
+
+
+
+        
+
+
+        let dAsize = idxsel.dims()[0];
+
+        let dAstart = 0;
+        let dAend = dAstart + dAsize - 1;
+
+        let dBstart = dAend + 1;
+        let dBend = dBstart + dAsize - 1;
+
+        let dCstart = dBend + 1;
+        let dCend = dCstart + dAsize - 1;
+
+        let dDstart = dCend + 1;
+        let dDend = dDstart + dAsize - 1;
+
+        let dEstart = dDend + 1;
+        let dEend = dEstart + dAsize - 1;
+
+        dAseqs_out.insert(i,[arrayfire::Seq::new(dAstart as i32, dAend as i32, 1i32), arrayfire::Seq::default() ] );
+        dBseqs_out.insert(i,[arrayfire::Seq::new(dBstart as i32, dBend as i32, 1i32), arrayfire::Seq::default() ] );
+        dCseqs_out.insert(i,[arrayfire::Seq::new(dCstart as i32, dCend as i32, 1i32), arrayfire::Seq::default() ] );
+        dDseqs_out.insert(i,[arrayfire::Seq::new(dDstart as i32, dDend as i32, 1i32), arrayfire::Seq::default() ] );
+        dEseqs_out.insert(i,[arrayfire::Seq::new(dEstart as i32, dEend as i32, 1i32), arrayfire::Seq::default() ] );
+
+
+
+
+        combidxsel = arrayfire::constant::<i32>(0,arrayfire::Dim4::new(&[idxsel.dims()[0]*5 , 1,1,1]));
+        arrayfire::assign_seq(&mut combidxsel, &[arrayfire::Seq::new(dAstart as i32, dAend as i32, 1i32)], &Aidxsel);
+        arrayfire::assign_seq(&mut combidxsel, &[arrayfire::Seq::new(dBstart as i32, dBend as i32, 1i32)], &Bidxsel);
+        arrayfire::assign_seq(&mut combidxsel, &[arrayfire::Seq::new(dCstart as i32, dCend as i32, 1i32)], &Cidxsel);
+        arrayfire::assign_seq(&mut combidxsel, &[arrayfire::Seq::new(dDstart as i32, dDend as i32, 1i32)], &Didxsel);
+        arrayfire::assign_seq(&mut combidxsel, &[arrayfire::Seq::new(dEstart as i32, dEend as i32, 1i32)], &Eidxsel);
+
+        combidxsel_out.insert(i, combidxsel.clone());
+
+
+
+
+
+
+
+
+
+
+        //Get indexes of WValues
+        valsel = COO_batch_find(WRowIdxCOO,&idxsel, COO_batch_size);
+        valsel_out.insert(i, valsel.clone());
+
+
+
+        //Get rows of WRowIdx
+        rvec = arrayfire::lookup(WRowIdxCOO, &valsel, 0);
+        
+
+
+        //Get cols
+        cvec = arrayfire::lookup(WColIdx, &valsel, 0);
+        cvec_out.insert(i, cvec.clone());
+
+
+        //Find idx of dX
+        dXsel = remap_rows(&rvec, &idxsel, neuron_size);
+        dXsel_out.insert(i, dXsel);
+
+
+        //Compute global index
+        gidx1 = get_global_weight_idx2(
+            neuron_size,
+            &rvec,
+            &cvec,
+        );
+
+        //Sort array
+        let (_,idx) = arrayfire::sort_index(
+            &gidx1, 
+            0, 
+            true
+        );
+
+        //Sparse value
+        sparseval = arrayfire::lookup(&valsel, &idx, 0);
+
+        //Sparse Col vector
+        sparsecol = arrayfire::lookup(&rvec, &idx, 0);
+
+        let mut temparr = arrayfire::constant::<i32>(0,arrayfire::Dim4::new(&[neuron_size,1,1,1]));
+
+        let repeat_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    
+        let mut counts = arrayfire::iota::<i32>(idxsel.dims(),repeat_dims);
+    
+        let mut idxrs = arrayfire::Indexer::default();
+        idxrs.set_index(&idxsel, 0, None);
+        arrayfire::assign_gen(&mut temparr, &idxrs, &counts);
+
+        sparsecol = arrayfire::lookup(&temparr, &sparsecol, 0);
+
+
+
+
+
+
+
+
+
+
+        //Sparse Row
+        sparserow = arrayfire::lookup(&cvec, &idx, 0);
+
+
+
+        let ones = arrayfire::constant::<i32>(1,sparserow.dims());
+        let  (_,mut sumarr) = arrayfire::sum_by_key(&sparserow, &ones, 0);
+
+
+        nrows_out.insert(i, sumarr.dims()[0].clone());
+
+        sparserow = arrayfire::accum(&sumarr, 0);
+
+
+        let constarr = arrayfire::constant::<i32>(0,arrayfire::Dim4::new(&[1,1,1,1]));
+        sparserow = arrayfire::join(0, &constarr, &sparserow);
+        
+
+        sparseval_out.insert(i, sparseval.clone());
+        sparserow_out.insert(i, sparserow.clone());
+        sparsecol_out.insert(i, sparsecol.clone());
+
+
+
+
+
+        //Next idxsel
+        newidxsel = find_unique(&cvec,neuron_size);
+
+        //Add new Y error
+        if (yslicidx > 0)
+        {
+            yslicidx = yslicidx - 1;
+
+            newidxsel = arrayfire::join(0, &newidxsel, &output_idxsel);
+        }
+
+
+    }
+
+
+
+
+
+    let Wstart = 0;
+    let Wend = (Wdims0 as i64) - 1;
+
+    let Hstart = Wend + 1; 
+    let Hend = Hstart + (Hdims0 as i64) - 1;
+
+    let Astart = Hend + 1; 
+    let Aend = Astart + (Adims0 as i64) - 1;
+
+    let Bstart = Aend + 1; 
+    let Bend = Bstart + (Bdims0 as i64) - 1;
+
+    let Cstart = Bend + 1; 
+    let Cend = Cstart + (Cdims0 as i64) - 1;
+
+    let Dstart = Cend + 1; 
+    let Dend = Dstart + (Ddims0 as i64) - 1;
+
+    let Estart = Dend + 1; 
+    let Eend = Estart + (Edims0 as i64) - 1;
+
+
+    *Wseqs = [arrayfire::Seq::new(Wstart as i32, Wend as i32, 1i32)];
+    *Hseqs = [arrayfire::Seq::new(Hstart as i32, Hend as i32, 1i32)];
+    *Aseqs = [arrayfire::Seq::new(Astart as i32, Aend as i32, 1i32)];
+    *Bseqs = [arrayfire::Seq::new(Bstart as i32, Bend as i32, 1i32)];
+    *Cseqs = [arrayfire::Seq::new(Cstart as i32, Cend as i32, 1i32)];
+    *Dseqs = [arrayfire::Seq::new(Dstart as i32, Dend as i32, 1i32)];
+    *Eseqs = [arrayfire::Seq::new(Estart as i32, Eend as i32, 1i32)];
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 Forward pass using CSR weighted adjacency sparse matrices and UAF. 
 Generates all internal states and the neural network output
