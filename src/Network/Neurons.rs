@@ -1024,7 +1024,7 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint<UnaryOutType = Z,
         //Propagate Errors
         tempW = arrayfire::lookup(network_params, &sparseval_out[&i], 0);
 
-        tempW = arrayfire::sparse::<f64>(
+        tempW = arrayfire::sparse(
             nrows_out[&i],
             dX.dims()[0],
             &tempW,
