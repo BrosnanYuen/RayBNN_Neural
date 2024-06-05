@@ -785,7 +785,11 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
 
-    let mut inx = arrayfire::constant::<f64>(0.0,S_dims);
+    //let mut inx = arrayfire::constant::<f64>(0.0,S_dims);
+    let mut inx = arrayfire::tile(&ZERO, S_dims);
+
+
+
 
     let mut tempx =  arrayfire::slice(X, 0);
 
