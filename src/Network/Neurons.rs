@@ -739,10 +739,8 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
 
 
     //Set output to zero
-    *grad = arrayfire::constant::<f64>(0.0,network_params.dims());
-
-
-
+    //    *grad = arrayfire::constant::<f64>(0.0,network_params.dims());
+    *grad = arrayfire::tile(&ZERO, network_params.dims());
 
 
 
