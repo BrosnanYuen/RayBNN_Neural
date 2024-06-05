@@ -800,21 +800,21 @@ pub fn state_space_backward_group2<Z: arrayfire::FloatingPoint  >(
     let mut Xtemp = arrayfire::slice(Z, 0);
 
 
-    let mut sA = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut sB = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut sC = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut sD = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut sE = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut sA = ZERO.clone();
+    let mut sB = ZERO.clone();
+    let mut sC = ZERO.clone();
+    let mut sD = ZERO.clone();
+    let mut sE = ZERO.clone();
 
 
 
 
-    let mut dX = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dA = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dB = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dC = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dD = arrayfire::constant::<f64>(0.0,temp_dims);
-    let mut dE = arrayfire::constant::<f64>(0.0,temp_dims);
+    let mut dX = ZERO.clone();
+    let mut dA = ZERO.clone();
+    let mut dB = ZERO.clone();
+    let mut dC = ZERO.clone();
+    let mut dD = ZERO.clone();
+    let mut dE = ZERO.clone();
 
 
 
