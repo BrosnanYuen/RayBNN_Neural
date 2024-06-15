@@ -35,6 +35,7 @@ fn test_backstate_batch21() {
 	let sim_steps: u64 = 10;
     let mut batch_size: u64 = 105;
 
+	/*
 	let mut netdata: clusterdiffeq::neural::network_f64::network_metadata_type = clusterdiffeq::neural::network_f64::network_metadata_type {
 		neuron_size: neuron_size,
 	    input_size: input_size,
@@ -59,7 +60,7 @@ fn test_backstate_batch21() {
 		spring_const: 0.01,
 		repel_const: 10.0
 	};
-
+	 */
 
 
     let mut modeldata_int: HashMap<String,u64> = HashMap::new();
