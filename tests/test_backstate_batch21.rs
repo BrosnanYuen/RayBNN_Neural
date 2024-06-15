@@ -60,6 +60,28 @@ fn test_backstate_batch21() {
 		repel_const: 10.0
 	};
 
+
+
+    let mut modeldata_int: HashMap<String,u64> = HashMap::new();
+
+    modeldata_int.insert("neuron_size".to_string(), neuron_size);
+    modeldata_int.insert("input_size".to_string(), input_size);
+    modeldata_int.insert("output_size".to_string(), output_size);
+    modeldata_int.insert("proc_num".to_string(), proc_num);
+    modeldata_int.insert("active_size".to_string(), active_size);
+    modeldata_int.insert("space_dims".to_string(), space_dims);
+    modeldata_int.insert("step_num".to_string(), sim_steps);
+    modeldata_int.insert("batch_size".to_string(), batch_size);
+    modeldata_int.insert("batch_size".to_string(), batch_size);
+
+
+
+
+
+
+
+
+
 	let temp_dims = arrayfire::Dim4::new(&[1,1,1,1]);
 
 
