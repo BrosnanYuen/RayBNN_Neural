@@ -72,8 +72,17 @@ fn test_backstate_batch21() {
     modeldata_int.insert("space_dims".to_string(), space_dims);
     modeldata_int.insert("step_num".to_string(), sim_steps);
     modeldata_int.insert("batch_size".to_string(), batch_size);
-    modeldata_int.insert("batch_size".to_string(), batch_size);
 
+	let mut modeldata_float: HashMap<String,f64> = HashMap::new();
+    modeldata_float.insert("time_step".to_string(), 0.1);
+	modeldata_float.insert("nratio".to_string(), 0.5);
+	modeldata_float.insert("neuron_std".to_string(), 0.06);
+	modeldata_float.insert("sphere_rad".to_string(), 0.9);
+	modeldata_float.insert("neuron_rad".to_string(), 0.1);
+	modeldata_float.insert("con_rad".to_string(), 0.6);
+	modeldata_float.insert("init_prob".to_string(), 0.5);
+	modeldata_float.insert("add_neuron_rate".to_string(), 0.0);
+	modeldata_float.insert("del_neuron_rate".to_string(), 0.0);
 
 
 
