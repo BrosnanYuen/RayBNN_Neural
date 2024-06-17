@@ -1,0 +1,22 @@
+output_size: 3
+neuron_size: 600
+step_num: 10
+proc_num: 4
+input_size: 4
+space_dims: 3
+batch_size: 105
+active_size: 25
+del_unused_neuron: 1
+del_neuron_rate: 0
+spring_const: 0.01
+repel_const: 0.01
+center_const: 0.03
+con_rad: 0.6
+nratio: 0.5
+add_neuron_rate: 0
+sphere_rad: 0.9
+init_prob: 0.5
+time_step: 0.1
+neuron_rad: 0.1
+neuron_std: 0.06
+
