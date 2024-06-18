@@ -228,7 +228,7 @@ fn test_backstate_batch21() {
 
 
 
-	let mut WRowIdxCOO = clusterdiffeq::graph::large_sparse_i32::CSR_to_COO(&WRowIdxCSR);
+	let mut WRowIdxCOO = RayBNN_Sparse::Util::Convert::CSR_to_COO(&WRowIdxCSR);
 
     //let X_dims = arrayfire::Dim4::new(&[input_size,batch_size,proc_num,1]);
     //let mut X = arrayfire::constant::<f64>(0.0,X_dims);
