@@ -152,9 +152,9 @@ fn test_backstate_batch22() {
 	//println!("Load Data");
 	arrayfire::sync(DEVICE);
 	let spec_dims = arrayfire::Dim4::new(&[dataset_size, input_size + output_size, 1, 1]);
-    let spec = clusterdiffeq::export::dataloader_f32::file_to_matrix(
+    let spec = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f32>(
     	"./test_data/spec_30dB.dat",
-		spec_dims
+		//spec_dims
     );
 	//println!("spec.dims()[0] {}",spec.dims()[0]);
 	//println!("spec.dims()[1] {}",spec.dims()[1]);
