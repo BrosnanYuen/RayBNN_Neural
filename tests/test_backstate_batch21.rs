@@ -631,7 +631,9 @@ fn test_backstate_batch21() {
     yhatidx = arrayfire::transpose(&yhatidx, false);
     yidx = arrayfire::transpose(&yidx, false);
 
-    let confusion = clusterdiffeq::optimal::measure_u32::confusion_matrix(&yhatidx,&yidx,output_size);
+
+	
+    let confusion = RayBNN_Optimizer::Discrete::Classification::confusion_matrix(&yhatidx,&yidx,output_size);
 
     let diag = arrayfire::diag_extract(&confusion,0);
     let (correct,_) = arrayfire::sum_all(&diag);
