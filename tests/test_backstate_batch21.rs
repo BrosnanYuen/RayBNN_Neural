@@ -170,7 +170,7 @@ fn test_backstate_batch21() {
 	let train_X_dims = arrayfire::Dim4::new(&[4, 105, 1, 1]);
     let mut X = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
     	"./test_data/flower_train_X.csv",
-    	train_X_dims
+    	//train_X_dims
     );
 
 
@@ -179,7 +179,7 @@ fn test_backstate_batch21() {
 	let train_Y_dims = arrayfire::Dim4::new(&[3, 105, 1, 1]);
     let mut train_Y = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
     	"./test_data/flower_train_Y.csv",
-    	train_Y_dims
+    	//train_Y_dims
     );
 
 
@@ -190,7 +190,7 @@ fn test_backstate_batch21() {
 	let test_Y_dims = arrayfire::Dim4::new(&[3, 45, 1, 1]);
     let mut test_Y = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
     	"./test_data/flower_test_Y.csv",
-    	test_Y_dims
+    	//test_Y_dims
     );
 
 
@@ -200,7 +200,7 @@ fn test_backstate_batch21() {
 	let test_X_dims = arrayfire::Dim4::new(&[4, 45, 1, 1]);
     let mut test_X = RayBNN_DataLoader::Dataset::CSV::file_to_arrayfire::<f64>(
     	"./test_data/flower_test_X.csv",
-    	test_X_dims
+    	//test_X_dims
     );
 
 
