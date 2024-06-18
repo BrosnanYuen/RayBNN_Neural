@@ -62,7 +62,7 @@ fn test_backstate_batch21() {
 	};
 	 */
 
-
+	let mut modeldata_string:  HashMap<String, String> = HashMap::new();
     let mut modeldata_int: HashMap<String,u64> = HashMap::new();
 
     modeldata_int.insert("neuron_size".to_string(), neuron_size);
@@ -120,7 +120,7 @@ fn test_backstate_batch21() {
 
 
 
-
+	/*
 	clusterdiffeq::export::dataloader_f64::load_network(
 			"./test_data/network_test.csv",
 			&mut netdata,
@@ -137,11 +137,27 @@ fn test_backstate_batch21() {
 			&mut neuron_pos,
 			&mut neuron_idx
 		);
+		 */
 
-
-
-
-
+	RayBNN_DataLoader::Model::Network::read_network_dir(
+		"./test_data/network_batch21/", 
+		 &mut modeldata_string, 
+		 &mut modeldata_float, 
+		 &mut modeldata_int, 
+		 &mut WValues, 
+		 &mut WRowIdxCSR, 
+		 &mut WColIdx, 
+		 &mut H, 
+		 &mut A, 
+		 &mut B, 
+		 &mut C, 
+		 &mut D, 
+		 &mut E, 
+		 &mut glia_pos, 
+		 &mut neuron_pos, 
+		 &mut neuron_idx
+	 );
+ 
 
 	
 
