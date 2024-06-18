@@ -380,7 +380,8 @@ fn test_backstate_batch21() {
 
 
 
-
+	let beta0 = arrayfire::constant::<f64>(0.9,arrayfire::Dim4::new(&[1, 1, 1, 1]));
+	let beta1 = arrayfire::constant::<f64>(0.999,arrayfire::Dim4::new(&[1, 1, 1, 1]));
 
 	for i in 0..50
 	{
@@ -479,10 +480,10 @@ fn test_backstate_batch21() {
 
 	
 
-
-		clusterdiffeq::optimal::gd_f64::adam(
-			0.9
-			,0.999
+		
+		RayBNN_Optimizer::Continuous::GD::adam(
+			&beta0
+			,&beta1
 			,&mut grad
 			,&mut mt
 			,&mut vt);
