@@ -432,7 +432,7 @@ fn test_backstate_batch21() {
 			&Z,
 			&Q,
 			&Y,
-			clusterdiffeq::optimal::loss_f64::sigmoid_cross_entropy_grad,
+			RayBNN_Optimizer::Continuous::Loss::sigmoid_cross_entropy_grad,
 			&neuron_idx,
 
 
