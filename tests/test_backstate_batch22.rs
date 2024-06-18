@@ -444,7 +444,7 @@ fn test_backstate_batch22() {
 			&Z,
 			&Q,
 			&Y,
-			clusterdiffeq::optimal::loss_f32::MSE_grad,
+			RayBNN_Optimizer::Continuous::Loss::MSE_grad,
 			&neuron_idx,
 
 
