@@ -510,6 +510,7 @@ fn test_backstate_batch21() {
 
     batch_size = 45;
 
+	/* 
 	let netdata: clusterdiffeq::neural::network_f64::network_metadata_type = clusterdiffeq::neural::network_f64::network_metadata_type {
 		neuron_size: neuron_size,
 	    input_size: input_size,
@@ -534,6 +535,34 @@ fn test_backstate_batch21() {
 		spring_const: 0.01,
 		repel_const: 10.0
 	};
+	*/
+
+	
+	let mut modeldata_string:  HashMap<String, String> = HashMap::new();
+    let mut modeldata_int: HashMap<String,u64> = HashMap::new();
+
+    modeldata_int.insert("neuron_size".to_string(), neuron_size);
+    modeldata_int.insert("input_size".to_string(), input_size);
+    modeldata_int.insert("output_size".to_string(), output_size);
+    modeldata_int.insert("proc_num".to_string(), proc_num);
+    modeldata_int.insert("active_size".to_string(), active_size);
+    modeldata_int.insert("space_dims".to_string(), space_dims);
+    modeldata_int.insert("step_num".to_string(), sim_steps);
+    modeldata_int.insert("batch_size".to_string(), batch_size);
+
+	let mut modeldata_float: HashMap<String,f64> = HashMap::new();
+    modeldata_float.insert("time_step".to_string(), 0.1);
+	modeldata_float.insert("nratio".to_string(), 0.5);
+	modeldata_float.insert("neuron_std".to_string(), 0.06);
+	modeldata_float.insert("sphere_rad".to_string(), 0.9);
+	modeldata_float.insert("neuron_rad".to_string(), 0.1);
+	modeldata_float.insert("con_rad".to_string(), 0.6);
+	modeldata_float.insert("init_prob".to_string(), 0.5);
+	modeldata_float.insert("add_neuron_rate".to_string(), 0.0);
+	modeldata_float.insert("del_neuron_rate".to_string(), 0.0);
+
+
+
 
 
     //let X_dims = arrayfire::Dim4::new(&[input_size,batch_size,proc_num,1]);
