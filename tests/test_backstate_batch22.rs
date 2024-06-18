@@ -1,10 +1,15 @@
 #![allow(unused_parens)]
 #![allow(non_snake_case)]
 
-extern crate arrayfire;
-extern crate clusterdiffeq;
+use arrayfire;
+use RayBNN_DataLoader;
+use RayBNN_Graph;
+use RayBNN_Neural;
+use RayBNN_Optimizer;
+
 use std::collections::HashMap;
 use nohash_hasher;
+
 
 
 const BACK_END: arrayfire::Backend = arrayfire::Backend::CUDA;
