@@ -51,9 +51,9 @@ fn test_backstate_batch44() {
     modeldata_int.insert("input_size".to_string(), input_size);
     modeldata_int.insert("output_size".to_string(), output_size);
     modeldata_int.insert("proc_num".to_string(), proc_num);
-    modeldata_int.insert("active_size".to_string(), active_size);
-    modeldata_int.insert("space_dims".to_string(), space_dims);
-    modeldata_int.insert("step_num".to_string(), sim_steps);
+    modeldata_int.insert("active_size".to_string(), neuron_size);
+    //modeldata_int.insert("space_dims".to_string(), space_dims);
+    //modeldata_int.insert("step_num".to_string(), sim_steps);
     modeldata_int.insert("batch_size".to_string(), batch_size);
 
 	let mut modeldata_float: HashMap<String,f64> = HashMap::new();
@@ -75,12 +75,12 @@ fn test_backstate_batch44() {
 	//let mut neuron_pos = arrayfire::constant::<f64>(0.0,temp_dims);
 
 
-	netdata.input_size = input_size;
-	netdata.output_size = output_size;
-	netdata.neuron_size = neuron_size;
-	netdata.proc_num = proc_num;
-	netdata.active_size = neuron_size;
-	netdata.batch_size = batch_size;
+	//netdata.input_size = input_size;
+	//netdata.output_size = output_size;
+	//netdata.neuron_size = neuron_size;
+	//netdata.proc_num = proc_num;
+	//netdata.active_size = neuron_size;
+	//netdata.batch_size = batch_size;
 
 	
 	//let mut H = arrayfire::constant::<f64>(0.0,temp_dims);
