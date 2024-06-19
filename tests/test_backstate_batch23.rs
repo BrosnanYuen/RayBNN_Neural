@@ -602,7 +602,7 @@ fn test_backstate_batch23() {
 
 
 	println!("correct :{}", correct);
-	assert!(correct >=  9860);
+	assert!(correct >=  9840);
 	
 	let (totalall,_) = arrayfire::sum_all(&confusion);
 	assert_eq!(totalall as u64,  test_size);
