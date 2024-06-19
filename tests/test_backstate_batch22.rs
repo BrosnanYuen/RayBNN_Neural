@@ -377,6 +377,9 @@ fn test_backstate_batch22() {
 
 
 
+	let beta0 = arrayfire::constant::<f64>(0.9,arrayfire::Dim4::new(&[1, 1, 1, 1]));
+	let beta1 = arrayfire::constant::<f64>(0.999,arrayfire::Dim4::new(&[1, 1, 1, 1]));
+
 
 	arrayfire::sync(DEVICE);
 	for i in 0..1000
