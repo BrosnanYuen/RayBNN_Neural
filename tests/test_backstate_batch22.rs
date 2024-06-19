@@ -377,8 +377,8 @@ fn test_backstate_batch22() {
 
 
 
-	let beta0 = arrayfire::constant::<f64>(0.9,arrayfire::Dim4::new(&[1, 1, 1, 1]));
-	let beta1 = arrayfire::constant::<f64>(0.999,arrayfire::Dim4::new(&[1, 1, 1, 1]));
+	let beta0 = arrayfire::constant::<f32>(0.9,arrayfire::Dim4::new(&[1, 1, 1, 1]));
+	let beta1 = arrayfire::constant::<f32>(0.999,arrayfire::Dim4::new(&[1, 1, 1, 1]));
 
 
 	arrayfire::sync(DEVICE);
@@ -495,9 +495,9 @@ fn test_backstate_batch22() {
 	
 
 
-		clusterdiffeq::optimal::gd_f32::adam(
-			0.9
-			,0.999
+		RayBNN_Optimizer::Continuous::GD::adam(
+			&beta0
+			,&beta1
 			,&mut grad
 			,&mut mt
 			,&mut vt);
