@@ -110,6 +110,7 @@ fn test_backstate_batch23() {
 
 
 	arrayfire::sync(DEVICE);
+	/* 
 	clusterdiffeq::export::dataloader_f32::load_network(
 			"./test_data/network_MNIST.csv",
 			&mut netdata,
@@ -126,6 +127,28 @@ fn test_backstate_batch23() {
 			&mut neuron_pos,
 			&mut neuron_idx
 		);
+	*/
+
+
+	RayBNN_DataLoader::Model::Network::read_network_dir(
+		"./test_data/network_batch23/", 
+			&mut modeldata_string, 
+			&mut modeldata_float, 
+			&mut modeldata_int, 
+			&mut WValues, 
+			&mut WRowIdxCSR, 
+			&mut WColIdx, 
+			&mut H, 
+			&mut A, 
+			&mut B, 
+			&mut C, 
+			&mut D, 
+			&mut E, 
+			&mut glia_pos, 
+			&mut neuron_pos, 
+			&mut neuron_idx
+	);
+	
 	arrayfire::sync(DEVICE);
 
 
