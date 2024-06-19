@@ -20,7 +20,6 @@ const DEVICE: i32 = 0;
 
 
 #[test]
-#[ignore]
 fn test_backstate_batch22() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
