@@ -17,12 +17,15 @@ const DEVICE: i32 = 0;
 
 
 
-
 fn loss_grad(
 	yhat: &arrayfire::Array<f32>,
 	y: &arrayfire::Array<f32>) -> arrayfire::Array<f32> 
 { 
-	clusterdiffeq::optimal::loss_f32::weighted_sigmoid_cross_entropy_grad(yhat, y, ten) 
+	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let TEN = arrayfire::constant::<f32>(10.0,single_dims);
+
+	RayBNN_Optimizer::Continuous::Loss::weighted_sigmoid_cross_entropy_grad(yhat, y, &TEN)
+	//clusterdiffeq::optimal::loss_f32::weighted_sigmoid_cross_entropy_grad(yhat, y, ten) 
 }
 
 
