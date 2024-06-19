@@ -154,18 +154,18 @@ fn test_backstate_batch23() {
 
 
 
-
+	
 
 
 	arrayfire::sync(DEVICE);
-	let MNISTX = clusterdiffeq::export::dataloader_f32::file_to_hash_cpu(
+	let MNISTX = RayBNN_DataLoader::Dataset::CSV::file_to_hash_cpu::<f32>(
     	"./test_data/MNISTX.dat",
     	input_size,
 		batch_size
     );
 
 
-	let MNISTY = clusterdiffeq::export::dataloader_f32::file_to_hash_cpu(
+	let MNISTY = RayBNN_DataLoader::Dataset::CSV::file_to_hash_cpu::<f32>(
     	"./test_data/MNISTY.dat",
     	output_size,
 		batch_size
