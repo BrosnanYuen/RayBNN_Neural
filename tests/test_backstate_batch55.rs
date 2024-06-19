@@ -406,8 +406,11 @@ fn test_backstate_batch55() {
 	//println!("a1");
 
 
-	clusterdiffeq::neural::network_f64::state_space_forward_batch(
-		&netdata,
+	RayBNN_Neural::Network::Neurons::state_space_forward_batch(
+		//&netdata,
+		&modeldata_int,
+
+
 		&X,
 		
 		&WRowIdxCSR,
