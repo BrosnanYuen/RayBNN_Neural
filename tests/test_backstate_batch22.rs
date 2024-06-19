@@ -517,7 +517,9 @@ fn test_backstate_batch22() {
 
 	
     batch_size = test_size;
-	netdata.batch_size = batch_size;
+	//netdata.batch_size = batch_size;
+
+	modeldata_int.insert("batch_size".to_string(), batch_size);
 
 
 	arrayfire::sync(DEVICE);
