@@ -279,8 +279,11 @@ fn test_backstate_batch44() {
 
 
 
-	clusterdiffeq::graph::path_f64::find_path_backward_group2(
-		&netdata,
+	RayBNN_Neural::Network::Neurons::find_path_backward_group2(
+		//&netdata,
+		&modeldata_int,
+
+
 		proc_num,
 		1, 
 		&WRowIdxCOO,
