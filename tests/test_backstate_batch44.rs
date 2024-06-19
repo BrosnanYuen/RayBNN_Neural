@@ -201,7 +201,7 @@ fn test_backstate_batch44() {
 
 
 
-	let mut WRowIdxCOO = clusterdiffeq::graph::large_sparse_i32::CSR_to_COO(&WRowIdxCSR);
+	let mut WRowIdxCOO = RayBNN_Sparse::Util::Convert::CSR_to_COO(&WRowIdxCSR);
 
 
 
