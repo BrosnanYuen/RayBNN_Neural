@@ -600,6 +600,10 @@ fn test_backstate_batch22() {
 	let RMSE = RayBNN_Optimizer::Continuous::Loss::RMSE(&Yhat,&Y);
 	
 
-    assert!(RMSE < 0.49);
+	let mut RMSE_cpu = vec!(f32::default();RMSE.elements());
+	RMSE.host(&mut RMSE_cpu);
+
+
+    assert!(RMSE_cpu[0] < 0.49);
 
 }
