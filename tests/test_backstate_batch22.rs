@@ -597,7 +597,8 @@ fn test_backstate_batch22() {
 	idxrs.set_index(&seq1, 1, None);
 	idxrs.set_index(&seq2, 2, None);
 	let Yhat = arrayfire::index_gen(&Q, idxrs);
-	let RMSE = clusterdiffeq::optimal::loss_f32::RMSE(&Yhat,&Y);
+	let RMSE = RayBNN_Optimizer::Continuous::Loss::RMSE(&Yhat,&Y);
+	
 
     assert!(RMSE < 0.49);
 
