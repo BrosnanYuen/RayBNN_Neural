@@ -563,14 +563,14 @@ fn test_backstate_batch55() {
 	densegW.host(&mut densegW_cpu);
 
 
-	densegW_cpu = clusterdiffeq::export::round_f64::rvector(&densegW_cpu, 9);
+	densegW_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&densegW_cpu, 9);
 
 
 	let mut gW_cpu = vec!(f64::default();gW_act.elements());
 	gW_act.host(&mut gW_cpu);
 
 
-	gW_cpu = clusterdiffeq::export::round_f64::rvector(&gW_cpu, 9);
+	gW_cpu = RayBNN_DataLoader::Dataset::Round::rvector(&gW_cpu, 9);
 
 
 	assert_eq!(gW_cpu,densegW_cpu);
