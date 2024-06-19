@@ -557,8 +557,12 @@ fn test_backstate_batch22() {
 
 
 
-	clusterdiffeq::neural::network_f32::state_space_forward_batch(
-		&netdata,
+	RayBNN_Neural::Network::Neurons::state_space_forward_batch(
+		//&netdata,
+		&modeldata_int,
+
+
+
 		&X,
 		
 		&WRowIdxCSR,
